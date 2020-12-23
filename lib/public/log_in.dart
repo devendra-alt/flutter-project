@@ -3,6 +3,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:sign_up_app/private/home.dart';
 import 'package:sign_up_app/public/create_account.dart';
 import 'package:sign_up_app/public/landing.dart';
+import 'package:sign_up_app/services/auth.dart';
 import 'package:twinkle_button/twinkle_button.dart';
 
 class Login extends StatefulWidget {
@@ -11,6 +12,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final Autantication _auth = Autantication();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,14 +20,11 @@ class _LoginState extends State<Login> {
         backgroundColor: Colors.brown[50],
         body: Container(
             child: Column(children: <Widget>[
-
-
           // 1.logo
           Expanded(
               child: Container(
             child: logo1(),
           )),
-
 
           //2.Login details
           Expanded(
@@ -41,7 +40,6 @@ class _LoginState extends State<Login> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-
                       //for some space
                       SizedBox(
                         height: 20,
@@ -63,16 +61,14 @@ class _LoginState extends State<Login> {
                       textfield("Email", Icon(Icons.email),
                           TextInputType.emailAddress, false),
 
-
                       //textfield fuction
                       textfield("Password", Icon(Icons.vpn_key),
                           TextInputType.visiblePassword, true),
 
-                          //for some space
+                      //for some space
                       SizedBox(
                         height: 81,
                       ),
-
 
                       //Login Button
                       Row(children: <Widget>[
@@ -90,15 +86,23 @@ class _LoginState extends State<Login> {
                                     fontFamily: "Baloo2"),
                               ),
                               buttonColor: Colors.brown[500],
-                              onclickButtonFunction: () {
-                                Navigator.push(
-                                    context,
-                                    PageTransition(
-                                        type: PageTransitionType.topToBottom,
-                                        duration: Duration(milliseconds: 800),
-                                        reverseDuration:
-                                            Duration(milliseconds: 800),
-                                        child: Home()));
+                              onclickButtonFunction: () async {
+                                dynamic result = await _auth.signInAnoymosly();
+                                if (result == null) {
+                                  print("error sign-in");
+                                } else {
+                                  print(result.uid);
+                                  print("sign-in-successfull");
+                                  Navigator.push(
+                                      context,
+                                      PageTransition(
+                                          type: PageTransitionType.topToBottom,
+                                          duration: Duration(milliseconds: 800),
+                                          reverseDuration:
+                                              Duration(milliseconds: 800),
+                                          child: Home())
+                                  );
+                                }
                               }),
                         ))
                       ]),

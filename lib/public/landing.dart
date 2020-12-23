@@ -20,12 +20,8 @@ class _LandingState extends State<Landing> {
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-
-
                 // 1 logo
                 logo1(),
-
-
 
                 //2 image
                 DelayedDisplay(
@@ -45,8 +41,6 @@ class _LandingState extends State<Landing> {
                     ),
                   ),
                 ),
-
-
 
                 //3 Get Staretd button
                 DelayedDisplay(

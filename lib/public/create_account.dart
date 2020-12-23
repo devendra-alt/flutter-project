@@ -20,12 +20,8 @@ class _CreateAccountState extends State<CreateAccount> {
         backgroundColor: Colors.brown[100],
         body: Container(
             child: Column(children: <Widget>[
-
-              //for some space 
-          Expanded(
-              child: Container(
-              
-          )),
+          //for some space
+          Expanded(child: Container()),
 
           //create account details
           Expanded(
@@ -41,7 +37,6 @@ class _CreateAccountState extends State<CreateAccount> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-
                       //for some space
                       SizedBox(
                         height: 20,
@@ -63,11 +58,10 @@ class _CreateAccountState extends State<CreateAccount> {
                       textfield("Name", Icon(Icons.person_add),
                           TextInputType.name, false),
 
-
                       //textfield same from log_in.dart
                       textfield("Email", Icon(Icons.email),
                           TextInputType.emailAddress, false),
-                      
+
                       //textfield same from log_in.dart
                       textfield("Password", Icon(Icons.vpn_key),
                           TextInputType.visiblePassword, true),
@@ -76,7 +70,7 @@ class _CreateAccountState extends State<CreateAccount> {
                       textfield("Confirm Password", Icon(Icons.vpn_key),
                           TextInputType.visiblePassword, true),
 
-                          //for some space
+                      //for some space
                       SizedBox(
                         height: 81,
                       ),
