@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:sign_up_app/private/home.dart';
-
-// import 'package:sign_up_app/public/landing.dart';
 import 'package:twinkle_button/twinkle_button.dart';
 
 import 'log_in.dart';

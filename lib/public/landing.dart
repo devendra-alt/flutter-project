@@ -44,7 +44,7 @@ class _LandingState extends State<Landing> {
 
                 //3 Get Staretd button
                 DelayedDisplay(
-                    delay: Duration(milliseconds: 2500),
+                    delay: Duration(milliseconds: 2500), 
                     slidingCurve: Curves.elasticIn,
                     child: Row(children: <Widget>[
                       Expanded(
