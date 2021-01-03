@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:sign_up_app/private/home.dart';
+import 'package:sign_up_app/services/auth.dart';
 import 'package:twinkle_button/twinkle_button.dart';
-
+import 'package:provider/provider.dart';
 import 'log_in.dart';
 
 class CreateAccount extends StatefulWidget {
@@ -11,6 +12,12 @@ class CreateAccount extends StatefulWidget {
 }
 
 class _CreateAccountState extends State<CreateAccount> {
+  final TextEditingController _uNameController = TextEditingController();
+  final TextEditingController _uEmailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _configPasswordController =
+      TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,20 +60,132 @@ class _CreateAccountState extends State<CreateAccount> {
                       ),
 
                       //textfield same from log_in.dart
-                      textfield("Name", Icon(Icons.person_add),
-                          TextInputType.name, false),
+                      Container(
+                          margin: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey, width: 2),
+                              borderRadius: BorderRadius.circular(50)),
+                          child: Row(
+                            children: <Widget>[
+                              Container(
+                                width: 60,
+                                child: Icon(
+                                  Icons.account_circle,
+                                  size: 20,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                              Expanded(
+                                  child: TextField(
+                                controller: _uNameController,
+                                style: TextStyle(fontSize: 18),
+                                keyboardType: TextInputType.name,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    contentPadding: EdgeInsets.all(15),
+                                    hintText: "UserName",
+                                    hintStyle: TextStyle(fontFamily: "Baloo2")),
+                              ))
+                            ],
+                          )),
 
                       //textfield same from log_in.dart
-                      textfield("Email", Icon(Icons.email),
-                          TextInputType.emailAddress, false),
+                      Container(
+                          margin: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey, width: 2),
+                              borderRadius: BorderRadius.circular(50)),
+                          child: Row(
+                            children: <Widget>[
+                              Container(
+                                width: 60,
+                                child: Icon(
+                                  Icons.email,
+                                  size: 20,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                              Expanded(
+                                  child: TextField(
+                                controller: _uEmailController,
+                                style: TextStyle(fontSize: 18),
+                                keyboardType: TextInputType.emailAddress,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    contentPadding: EdgeInsets.all(15),
+                                    hintText: "Email",
+                                    hintStyle: TextStyle(fontFamily: "Baloo2")),
+                              ))
+                            ],
+                          )),
 
                       //textfield same from log_in.dart
-                      textfield("Password", Icon(Icons.vpn_key),
-                          TextInputType.visiblePassword, true),
+                      Container(
+                          margin: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey, width: 2),
+                              borderRadius: BorderRadius.circular(50)),
+                          child: Row(
+                            children: <Widget>[
+                              Container(
+                                width: 60,
+                                child: Icon(
+                                  Icons.vpn_key,
+                                  size: 20,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                              Expanded(
+                                  child: TextField(
+                                controller: _passwordController,
+                                style: TextStyle(fontSize: 18),
+                                keyboardType: TextInputType.visiblePassword,
+                                obscureText: true,
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    contentPadding: EdgeInsets.all(15),
+                                    hintText: "Password",
+                                    hintStyle: TextStyle(fontFamily: "Baloo2")),
+                              ))
+                            ],
+                          )),
 
                       //textfield same from log_in.dart
-                      textfield("Confirm Password", Icon(Icons.vpn_key),
-                          TextInputType.visiblePassword, true),
+                      Container(
+                          margin: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey, width: 2),
+                              borderRadius: BorderRadius.circular(50)),
+                          child: Row(
+                            children: <Widget>[
+                              Container(
+                                width: 60,
+                                child: Icon(
+                                  Icons.vpn_key,
+                                  size: 20,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                              Expanded(
+                                  child: TextField(
+                                controller: _configPasswordController,
+                                style: TextStyle(fontSize: 18),
+                                keyboardType: TextInputType.visiblePassword,
+                                obscureText: true,
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    contentPadding: EdgeInsets.all(15),
+                                    hintText: "Confirm Password",
+                                    hintStyle: TextStyle(fontFamily: "Baloo2")),
+                              ))
+                            ],
+                          )),
 
                       //for some space
                       SizedBox(
@@ -89,15 +208,27 @@ class _CreateAccountState extends State<CreateAccount> {
                                     fontFamily: "Baloo2"),
                               ),
                               buttonColor: Colors.brown[500],
-                              onclickButtonFunction: () {
-                                Navigator.push(
-                                    context,
-                                    PageTransition(
-                                        type: PageTransitionType.topToBottom,
-                                        duration: Duration(milliseconds: 800),
-                                        reverseDuration:
-                                            Duration(milliseconds: 800),
-                                        child: Home()));
+                              onclickButtonFunction: () async {
+                                String msg = await context
+                                    .read<AuthenticationService>()
+                                    .signUp(
+                                        email: _uEmailController.text.trim(),
+                                        password:
+                                            _passwordController.text.trim(),
+                                        uName: _uNameController.text.trim());
+
+                                if (msg == "Signed up") {
+                                  print("e");
+                                  Navigator.pushReplacement(
+                                      context,
+                                      PageTransition(
+                                          type: PageTransitionType.bottomToTop,
+                                          duration:
+                                              Duration(milliseconds: 1000),
+                                          reverseDuration:
+                                              Duration(milliseconds: 800),
+                                          child: Home()));
+                                }
                               }),
                         ))
                       ]),

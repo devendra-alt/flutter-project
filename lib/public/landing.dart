@@ -62,7 +62,7 @@ class _LandingState extends State<Landing> {
                             ),
                             buttonColor: Colors.brown,
                             onclickButtonFunction: () {
-                              Navigator.push(
+                              Navigator.pushReplacement(
                                   context,
                                   PageTransition(
                                       type: PageTransitionType.bottomToTop,

@@ -3,7 +3,9 @@ import 'package:page_transition/page_transition.dart';
 import 'package:sign_up_app/private/home.dart';
 import 'package:sign_up_app/public/create_account.dart';
 import 'package:sign_up_app/public/landing.dart';
+import 'package:sign_up_app/services/auth.dart';
 import 'package:twinkle_button/twinkle_button.dart';
+import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -11,6 +13,9 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,13 +61,67 @@ class _LoginState extends State<Login> {
                       ),
 
                       //textfield fuction
-                      textfield("Email", Icon(Icons.email),
-                          TextInputType.emailAddress, false),
-
+                      Container(
+                          margin: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey, width: 2),
+                              borderRadius: BorderRadius.circular(50)),
+                          child: Row(
+                            children: <Widget>[
+                              Container(
+                                width: 60,
+                                child: Icon(
+                                  Icons.email,
+                                  size: 20,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                              Expanded(
+                                  child: TextField(
+                                controller: emailController,
+                                style: TextStyle(fontSize: 18),
+                                keyboardType: TextInputType.emailAddress,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    contentPadding: EdgeInsets.all(15),
+                                    hintText: "Email",
+                                    hintStyle: TextStyle(fontFamily: "Baloo2")),
+                              ))
+                            ],
+                          )),
+                      Container(
+                          margin: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey, width: 2),
+                              borderRadius: BorderRadius.circular(50)),
+                          child: Row(
+                            children: <Widget>[
+                              Container(
+                                width: 60,
+                                child: Icon(
+                                  Icons.vpn_key,
+                                  size: 20,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                              Expanded(
+                                  child: TextField(
+                                controller: passwordController,
+                                style: TextStyle(fontSize: 18),
+                                keyboardType: TextInputType.visiblePassword,
+                                obscureText: true,
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    contentPadding: EdgeInsets.all(15),
+                                    hintText: "Password",
+                                    hintStyle: TextStyle(fontFamily: "Baloo2")),
+                              ))
+                            ],
+                          )),
                       //textfield fuction
-                      textfield("Password", Icon(Icons.vpn_key),
-                          TextInputType.visiblePassword, true,
-                          ),
 
                       //for some space
                       SizedBox(
@@ -75,26 +134,35 @@ class _LoginState extends State<Login> {
                             child: Container(
                           padding: EdgeInsets.only(bottom: 25),
                           child: TwinkleButton(
-                              buttonWidth: 300,
-                              durationTime: null,
-                              buttonTitle: Text(
-                                "Log In",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20.0,
-                                    fontFamily: "Baloo2"),
-                              ),
-                              buttonColor: Colors.brown[500],
-                              onclickButtonFunction: () {
-                                Navigator.push(
+                            onclickButtonFunction: () async {
+                              String msg = await context
+                                  .read<AuthenticationService>()
+                                  .signIn(
+                                      email: emailController.text.trim(),
+                                      password: passwordController.text.trim());
+                              if (msg == "Signed in") {
+                                print("e");
+                                Navigator.pushReplacement(
                                     context,
                                     PageTransition(
-                                        type: PageTransitionType.topToBottom,
-                                        duration: Duration(milliseconds: 800),
+                                        type: PageTransitionType.bottomToTop,
+                                        duration: Duration(milliseconds: 1000),
                                         reverseDuration:
                                             Duration(milliseconds: 800),
                                         child: Home()));
-                              }),
+                              }
+                            },
+                            buttonWidth: 300,
+                            durationTime: null,
+                            buttonTitle: Text(
+                              "Log In",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20.0,
+                                  fontFamily: "Baloo2"),
+                            ),
+                            buttonColor: Colors.brown[500],
+                          ),
                         ))
                       ]),
 
@@ -134,37 +202,4 @@ class _LoginState extends State<Login> {
               )),
         ])));
   }
-}
-
-Widget textfield(
-    String text, Icon icon, TextInputType type, bool tohidePassword) {
-  return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey, width: 2),
-          borderRadius: BorderRadius.circular(50)),
-      child: Row(
-        children: <Widget>[
-          Container(
-            width: 60,
-            child: Icon(
-              icon.icon,
-              size: 20,
-              color: Colors.grey,
-            ),
-          ),
-          Expanded(
-            child: TextField(
-              style: TextStyle(fontSize: 18),
-              keyboardType: type,
-              obscureText: tohidePassword,
-              decoration: InputDecoration(
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.all(15),
-                  hintText: "$text",
-                  hintStyle: TextStyle(fontFamily: "Baloo2")),
-            ),
-          )
-        ],
-      ));
 }
