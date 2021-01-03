@@ -39,231 +39,255 @@ class _CreateAccountState extends State<CreateAccount> {
                         topLeft: Radius.circular(30.0),
                         topRight: Radius.circular(30.0),
                       )),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      //for some space
-                      SizedBox(
-                        height: 20,
-                      ),
-
-                      //Create account text
-                      Container(
-                        margin: EdgeInsets.only(bottom: 10),
-                        child: Text(
-                          "Create Account",
-                          style: TextStyle(
-                              fontFamily: "Baloo2",
-                              fontSize: 25.0,
-                              color: Colors.brown),
+                  child: Form(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        //for some space
+                        SizedBox(
+                          height: 20,
                         ),
-                      ),
 
-                      //textfield same from log_in.dart
-                      Container(
-                          margin: EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey, width: 2),
-                              borderRadius: BorderRadius.circular(50)),
-                          child: Row(
-                            children: <Widget>[
-                              Container(
-                                width: 60,
-                                child: Icon(
-                                  Icons.account_circle,
-                                  size: 20,
-                                  color: Colors.grey,
+                        //Create account text
+                        Container(
+                          margin: EdgeInsets.only(bottom: 10),
+                          child: Text(
+                            "Create Account",
+                            style: TextStyle(
+                                fontFamily: "Baloo2",
+                                fontSize: 25.0,
+                                color: Colors.brown),
+                          ),
+                        ),
+
+                        //textfield same from log_in.dart
+                        Container(
+                          margin:
+                              EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                          child: TextFormField(
+                            controller: _uNameController,
+                            cursorColor: Colors.brown[400],
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.brown,
+                                fontFamily: "Baloo2"),
+                            keyboardType: TextInputType.emailAddress,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              prefixIcon: Icon(
+                                Icons.account_box,
+                                color: Colors.brown[400],
+                              ),
+                              enabledBorder: const OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20.0)),
+                                  borderSide: const BorderSide(
+                                    color: Colors.grey,
+                                    width: 2.0,
+                                  )),
+                              contentPadding: EdgeInsets.all(15),
+                              hintText: "UserName",
+                              hintStyle: TextStyle(fontFamily: "Baloo2"),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0)),
+                                borderSide:
+                                    BorderSide(color: Colors.brown, width: 2.0),
+                              ),
+                            ),
+                          ),
+                        ),
+                        //textfield same from log_in.dart
+                        Container(
+                          margin:
+                              EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                          child: TextFormField(
+                            controller: _uEmailController,
+                            cursorColor: Colors.brown[400],
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.brown,
+                                fontFamily: "Baloo2"),
+                            keyboardType: TextInputType.emailAddress,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              prefixIcon: Icon(
+                                Icons.email,
+                                color: Colors.brown[400],
+                              ),
+                              enabledBorder: const OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20.0)),
+                                  borderSide: const BorderSide(
+                                    color: Colors.grey,
+                                    width: 2.0,
+                                  )),
+                              contentPadding: EdgeInsets.all(15),
+                              hintText: "Email",
+                              hintStyle: TextStyle(fontFamily: "Baloo2"),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0)),
+                                borderSide:
+                                    BorderSide(color: Colors.brown, width: 2.0),
+                              ),
+                            ),
+                          ),
+                        ),
+                        //textfield same from log_in.dart
+                        Container(
+                          margin:
+                              EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                          child: TextFormField(
+                            controller: _passwordController,
+                            cursorColor: Colors.brown[400],
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.brown,
+                                fontFamily: "Baloo2"),
+                            keyboardType: TextInputType.emailAddress,
+                            obscureText: true,
+                            decoration: InputDecoration(
+                              prefixIcon: Icon(
+                                Icons.vpn_key,
+                                color: Colors.brown[400],
+                              ),
+                              enabledBorder: const OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20.0)),
+                                  borderSide: const BorderSide(
+                                    color: Colors.grey,
+                                    width: 2.0,
+                                  )),
+                              contentPadding: EdgeInsets.all(15),
+                              hintText: "Passwrod",
+                              hintStyle: TextStyle(fontFamily: "Baloo2"),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0)),
+                                borderSide:
+                                    BorderSide(color: Colors.brown, width: 2.0),
+                              ),
+                            ),
+                          ),
+                        ),
+                        //textfield same from log_in.dart
+                        Container(
+                          margin:
+                              EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                          child: TextFormField(
+                            controller: _configPasswordController,
+                            cursorColor: Colors.brown[400],
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.brown,
+                                fontFamily: "Baloo2"),
+                            keyboardType: TextInputType.emailAddress,
+                            obscureText: true,
+                            decoration: InputDecoration(
+                              prefixIcon: Icon(
+                                Icons.vpn_key,
+                                color: Colors.brown[400],
+                              ),
+                              enabledBorder: const OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20.0)),
+                                  borderSide: const BorderSide(
+                                    color: Colors.grey,
+                                    width: 2.0,
+                                  )),
+                              contentPadding: EdgeInsets.all(15),
+                              hintText: "Confirm Password",
+                              hintStyle: TextStyle(fontFamily: "Baloo2"),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0)),
+                                borderSide:
+                                    BorderSide(color: Colors.brown, width: 2.0),
+                              ),
+                            ),
+                          ),
+                        ),
+
+                        //for some space
+                        SizedBox(
+                          height: 81,
+                        ),
+
+                        //create account button
+                        Row(children: <Widget>[
+                          Expanded(
+                              child: Container(
+                            padding: EdgeInsets.only(bottom: 25),
+                            child: TwinkleButton(
+                                buttonWidth: 300,
+                                durationTime: null,
+                                buttonTitle: Text(
+                                  "Create Account",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20.0,
+                                      fontFamily: "Baloo2"),
                                 ),
-                              ),
-                              Expanded(
-                                  child: TextField(
-                                controller: _uNameController,
-                                style: TextStyle(fontSize: 18),
-                                keyboardType: TextInputType.name,
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    contentPadding: EdgeInsets.all(15),
-                                    hintText: "UserName",
-                                    hintStyle: TextStyle(fontFamily: "Baloo2")),
-                              ))
-                            ],
-                          )),
+                                buttonColor: Colors.brown[500],
+                                onclickButtonFunction: () async {
+                                  String msg = await context
+                                      .read<AuthenticationService>()
+                                      .signUp(
+                                          email: _uEmailController.text.trim(),
+                                          password:
+                                              _passwordController.text.trim(),
+                                          uName: _uNameController.text.trim());
 
-                      //textfield same from log_in.dart
-                      Container(
-                          margin: EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey, width: 2),
-                              borderRadius: BorderRadius.circular(50)),
-                          child: Row(
-                            children: <Widget>[
-                              Container(
-                                width: 60,
-                                child: Icon(
-                                  Icons.email,
-                                  size: 20,
-                                  color: Colors.grey,
+                                  if (msg == "Signed up") {
+                                    print("e");
+                                    Navigator.pushReplacement(
+                                        context,
+                                        PageTransition(
+                                            type:
+                                                PageTransitionType.bottomToTop,
+                                            duration:
+                                                Duration(milliseconds: 1000),
+                                            reverseDuration:
+                                                Duration(milliseconds: 800),
+                                            child: Home()));
+                                  }
+                                }),
+                          ))
+                        ]),
+
+                        //back to login button
+                        Row(children: <Widget>[
+                          Expanded(
+                              child: Container(
+                            padding: EdgeInsets.only(bottom: 20),
+                            child: TwinkleButton(
+                                // twinkleTime: 1,
+                                highlightColor: Colors.brown[100],
+                                buttonWidth: 300,
+                                durationTime: null,
+                                buttonTitle: Text(
+                                  "Back to Log In",
+                                  style: TextStyle(
+                                      color: Colors.brown,
+                                      fontSize: 20.0,
+                                      fontFamily: "Baloo2"),
                                 ),
-                              ),
-                              Expanded(
-                                  child: TextField(
-                                controller: _uEmailController,
-                                style: TextStyle(fontSize: 18),
-                                keyboardType: TextInputType.emailAddress,
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    contentPadding: EdgeInsets.all(15),
-                                    hintText: "Email",
-                                    hintStyle: TextStyle(fontFamily: "Baloo2")),
-                              ))
-                            ],
-                          )),
-
-                      //textfield same from log_in.dart
-                      Container(
-                          margin: EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey, width: 2),
-                              borderRadius: BorderRadius.circular(50)),
-                          child: Row(
-                            children: <Widget>[
-                              Container(
-                                width: 60,
-                                child: Icon(
-                                  Icons.vpn_key,
-                                  size: 20,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              Expanded(
-                                  child: TextField(
-                                controller: _passwordController,
-                                style: TextStyle(fontSize: 18),
-                                keyboardType: TextInputType.visiblePassword,
-                                obscureText: true,
-                                decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    contentPadding: EdgeInsets.all(15),
-                                    hintText: "Password",
-                                    hintStyle: TextStyle(fontFamily: "Baloo2")),
-                              ))
-                            ],
-                          )),
-
-                      //textfield same from log_in.dart
-                      Container(
-                          margin: EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey, width: 2),
-                              borderRadius: BorderRadius.circular(50)),
-                          child: Row(
-                            children: <Widget>[
-                              Container(
-                                width: 60,
-                                child: Icon(
-                                  Icons.vpn_key,
-                                  size: 20,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              Expanded(
-                                  child: TextField(
-                                controller: _configPasswordController,
-                                style: TextStyle(fontSize: 18),
-                                keyboardType: TextInputType.visiblePassword,
-                                obscureText: true,
-                                decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    contentPadding: EdgeInsets.all(15),
-                                    hintText: "Confirm Password",
-                                    hintStyle: TextStyle(fontFamily: "Baloo2")),
-                              ))
-                            ],
-                          )),
-
-                      //for some space
-                      SizedBox(
-                        height: 81,
-                      ),
-
-                      //create account button
-                      Row(children: <Widget>[
-                        Expanded(
-                            child: Container(
-                          padding: EdgeInsets.only(bottom: 25),
-                          child: TwinkleButton(
-                              buttonWidth: 300,
-                              durationTime: null,
-                              buttonTitle: Text(
-                                "Create Account",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20.0,
-                                    fontFamily: "Baloo2"),
-                              ),
-                              buttonColor: Colors.brown[500],
-                              onclickButtonFunction: () async {
-                                String msg = await context
-                                    .read<AuthenticationService>()
-                                    .signUp(
-                                        email: _uEmailController.text.trim(),
-                                        password:
-                                            _passwordController.text.trim(),
-                                        uName: _uNameController.text.trim());
-
-                                if (msg == "Signed up") {
-                                  print("e");
+                                buttonColor: Colors.white,
+                                onclickButtonFunction: () {
                                   Navigator.pushReplacement(
                                       context,
                                       PageTransition(
                                           type: PageTransitionType.bottomToTop,
-                                          duration:
-                                              Duration(milliseconds: 1000),
+                                          duration: Duration(milliseconds: 800),
                                           reverseDuration:
                                               Duration(milliseconds: 800),
-                                          child: Home()));
-                                }
-                              }),
-                        ))
-                      ]),
-
-                      //back to login button
-                      Row(children: <Widget>[
-                        Expanded(
-                            child: Container(
-                          padding: EdgeInsets.only(bottom: 20),
-                          child: TwinkleButton(
-                              // twinkleTime: 1,
-                              highlightColor: Colors.brown[100],
-                              buttonWidth: 300,
-                              durationTime: null,
-                              buttonTitle: Text(
-                                "Back to Log In",
-                                style: TextStyle(
-                                    color: Colors.brown,
-                                    fontSize: 20.0,
-                                    fontFamily: "Baloo2"),
-                              ),
-                              buttonColor: Colors.white,
-                              onclickButtonFunction: () {
-                                Navigator.pushReplacement(
-                                    context,
-                                    PageTransition(
-                                        type: PageTransitionType.bottomToTop,
-                                        duration: Duration(milliseconds: 800),
-                                        reverseDuration:
-                                            Duration(milliseconds: 800),
-                                        child: Login()));
-                              }),
-                        ))
-                      ])
-                    ],
+                                          child: Login()));
+                                }),
+                          ))
+                        ])
+                      ],
+                    ),
                   ),
                 ),
               )),
