@@ -252,7 +252,7 @@ class _CreateAccountState extends State<CreateAccount> {
                               ),
                               buttonColor: Colors.white,
                               onclickButtonFunction: () {
-                                Navigator.pop(
+                                Navigator.pushReplacement(
                                     context,
                                     PageTransition(
                                         type: PageTransitionType.bottomToTop,

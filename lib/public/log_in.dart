@@ -185,7 +185,7 @@ class _LoginState extends State<Login> {
                               ),
                               buttonColor: Colors.white,
                               onclickButtonFunction: () {
-                                Navigator.push(
+                                Navigator.pushReplacement(
                                     context,
                                     PageTransition(
                                         type: PageTransitionType.bottomToTop,
