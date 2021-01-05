@@ -4,6 +4,7 @@ import 'package:sign_up_app/private/home.dart';
 import 'package:sign_up_app/services/auth.dart';
 import 'package:twinkle_button/twinkle_button.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'log_in.dart';
 
 class CreateAccount extends StatefulWidget {
@@ -15,8 +16,9 @@ class _CreateAccountState extends State<CreateAccount> {
   final TextEditingController _uNameController = TextEditingController();
   final TextEditingController _uEmailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _configPasswordController =
-      TextEditingController();
+
+  bool _showPassword = true;
+  Icon icon = Icon(Icons.visibility);
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +73,7 @@ class _CreateAccountState extends State<CreateAccount> {
                                 fontSize: 18,
                                 color: Colors.brown,
                                 fontFamily: "Baloo2"),
-                            keyboardType: TextInputType.emailAddress,
+                            keyboardType: TextInputType.name,
                             obscureText: false,
                             decoration: InputDecoration(
                               prefixIcon: Icon(
@@ -145,12 +147,30 @@ class _CreateAccountState extends State<CreateAccount> {
                                 fontSize: 18,
                                 color: Colors.brown,
                                 fontFamily: "Baloo2"),
-                            keyboardType: TextInputType.emailAddress,
-                            obscureText: true,
+                            keyboardType: TextInputType.visiblePassword,
+                            obscureText: _showPassword,
                             decoration: InputDecoration(
                               prefixIcon: Icon(
                                 Icons.vpn_key,
                                 color: Colors.brown[400],
+                              ),
+                              suffixIcon: IconButton(
+                                icon: Icon(icon.icon, color: Colors.brown[400]),
+                                onPressed: () {
+                                  if (this._showPassword == true) {
+                                    setState(() {
+                                      this._showPassword = false;
+                                      this.icon = Icon(Icons.visibility_off);
+                                    });
+                                  } else {
+                                    setState(() {
+                                      this._showPassword = true;
+                                      this.icon = Icon(Icons.visibility);
+                                    });
+                                  }
+
+                                  // this._showPassword = !this._showPassword);
+                                },
                               ),
                               enabledBorder: const OutlineInputBorder(
                                   borderRadius:
@@ -160,44 +180,7 @@ class _CreateAccountState extends State<CreateAccount> {
                                     width: 2.0,
                                   )),
                               contentPadding: EdgeInsets.all(15),
-                              hintText: "Passwrod",
-                              hintStyle: TextStyle(fontFamily: "Baloo2"),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10.0)),
-                                borderSide:
-                                    BorderSide(color: Colors.brown, width: 2.0),
-                              ),
-                            ),
-                          ),
-                        ),
-                        //textfield same from log_in.dart
-                        Container(
-                          margin:
-                              EdgeInsets.only(left: 20, right: 20, bottom: 20),
-                          child: TextFormField(
-                            controller: _configPasswordController,
-                            cursorColor: Colors.brown[400],
-                            style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.brown,
-                                fontFamily: "Baloo2"),
-                            keyboardType: TextInputType.emailAddress,
-                            obscureText: true,
-                            decoration: InputDecoration(
-                              prefixIcon: Icon(
-                                Icons.vpn_key,
-                                color: Colors.brown[400],
-                              ),
-                              enabledBorder: const OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(20.0)),
-                                  borderSide: const BorderSide(
-                                    color: Colors.grey,
-                                    width: 2.0,
-                                  )),
-                              contentPadding: EdgeInsets.all(15),
-                              hintText: "Confirm Password",
+                              hintText: "Password",
                               hintStyle: TextStyle(fontFamily: "Baloo2"),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius:
@@ -209,9 +192,30 @@ class _CreateAccountState extends State<CreateAccount> {
                           ),
                         ),
 
+                        //or text
+                        Container(
+                            child: Text(
+                                "- - - - - - - - - - or - - - - - - - - - - - -",
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.brown,
+                                    fontFamily: "Baloo2")
+                                  )
+                                ),
+
+                        SignInButton(Buttons.Google,
+                            // padding: EdgeInsets.all(10),
+                            // text: "",
+                            // mini: true,
+                            onPressed: () {}),
+                        SignInButton(Buttons.FacebookNew,
+                            // text: "",
+                            // mini: true,
+                            onPressed: () {}),
+
                         //for some space
                         SizedBox(
-                          height: 81,
+                          height: 45,
                         ),
 
                         //create account button
