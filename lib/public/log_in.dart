@@ -6,6 +6,7 @@ import 'package:sign_up_app/public/landing.dart';
 import 'package:sign_up_app/services/auth.dart';
 import 'package:twinkle_button/twinkle_button.dart';
 import 'package:provider/provider.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -17,9 +18,16 @@ class _LoginState extends State<Login> {
   final TextEditingController passwordController = TextEditingController();
   var _formKey = GlobalKey<FormState>();
   var isLoading = false;
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+
+
+  bool _showPassword = true;
+  Icon icon = Icon(Icons.visibility);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
         resizeToAvoidBottomPadding: false,
         backgroundColor: Colors.brown[50],
         body: Container(
@@ -29,6 +37,12 @@ class _LoginState extends State<Login> {
             // 1.logo
             Expanded(
                 child: Container(
+                  decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("images/bg.png"),
+                fit: BoxFit.cover,
+              ),
+            ),
               child: logo1(),
             )),
 
@@ -53,7 +67,7 @@ class _LoginState extends State<Login> {
 
                         //Login to Continue Text
                         Container(
-                          margin: EdgeInsets.only(bottom: 10),
+                          margin: EdgeInsets.only(bottom: 20),
                           child: Text(
                             "Login to Continue",
                             style: TextStyle(
@@ -68,6 +82,7 @@ class _LoginState extends State<Login> {
                           margin:
                               EdgeInsets.only(left: 20, right: 20, bottom: 20),
                           child: TextFormField(
+                           
                             controller: emailController,
                             cursorColor: Colors.brown[400],
                             style: TextStyle(
@@ -111,11 +126,29 @@ class _LoginState extends State<Login> {
                                 color: Colors.brown,
                                 fontFamily: "Baloo2"),
                             keyboardType: TextInputType.visiblePassword,
-                            obscureText: true,
+                            obscureText: _showPassword,
                             decoration: InputDecoration(
                               prefixIcon: Icon(
                                 Icons.vpn_key,
                                 color: Colors.brown[400],
+                              ),
+                              suffixIcon: IconButton(
+                                icon: Icon(icon.icon, color: Colors.brown[400]),
+                                onPressed: () {
+                                  if (this._showPassword == true) {
+                                    setState(() {
+                                      this._showPassword = false;
+                                      this.icon = Icon(Icons.visibility_off);
+                                    });
+                                  } else {
+                                    setState(() {
+                                      this._showPassword = true;
+                                      this.icon = Icon(Icons.visibility);
+                                    });
+                                  }
+
+                                  // this._showPassword = !this._showPassword);
+                                },
                               ),
                               enabledBorder: const OutlineInputBorder(
                                   borderRadius:
@@ -167,8 +200,19 @@ class _LoginState extends State<Login> {
                                           reverseDuration:
                                               Duration(milliseconds: 800),
                                           child: Home()));
-                                }
-                              },
+                                } else{
+                                  final snackBar=SnackBar(
+                                    content: Text(
+                                      "Invalid Password or Email",
+                                      style: TextStyle(fontFamily:"Baloo2",fontSize: 15),
+                                      ),
+                                    backgroundColor: Colors.brown[500],
+                                    duration: Duration(milliseconds: 1500),
+                                    );
+                                    
+                                  _scaffoldKey.currentState.showSnackBar(snackBar);
+                                    
+                                }},
                               buttonWidth: 300,
                               durationTime: null,
                               buttonTitle: Text(

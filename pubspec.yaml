@@ -36,6 +36,8 @@ dependencies:
   cloud_firestore: ^0.14.4
   firebase_auth: ^0.18.4+1
   provider: ^4.3.2+3
+  flutter_signin_button: ^1.1.0
+  form_field_validator: ^1.0.1
 
 dev_dependencies:
   flutter_test:

@@ -15,8 +15,14 @@ class _LandingState extends State<Landing> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.brown[50],
+       backgroundColor: Colors.brown[50],
         body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("images/bg.png"),
+              fit: BoxFit.cover,
+            ),
+          ),
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -28,14 +34,17 @@ class _LandingState extends State<Landing> {
                   delay: Duration(seconds: 2),
                   slidingCurve: Curves.fastLinearToSlowEaseIn,
                   child: Container(
-                    margin: EdgeInsets.only(bottom: 105.0),
-                    height: 225,
-                    width: 250,
+                    margin: EdgeInsets.only(bottom: 62.0,top: 0),
+                  
+                    height: 300,
+                    width: 350,
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         alignment: Alignment.center,
+                        fit: BoxFit.contain,
                         image: AssetImage(
-                          "images/1.png",
+                          "images/coffee_time2.png",
+                          
                         ),
                       ),
                     ),
@@ -43,8 +52,8 @@ class _LandingState extends State<Landing> {
                 ),
 
                 //3 Get Staretd button
-                DelayedDisplay(
-                    delay: Duration(milliseconds: 2500), 
+               DelayedDisplay(
+                    delay: Duration(milliseconds: 2500),
                     slidingCurve: Curves.elasticIn,
                     child: Row(children: <Widget>[
                       Expanded(
@@ -62,7 +71,7 @@ class _LandingState extends State<Landing> {
                             ),
                             buttonColor: Colors.brown,
                             onclickButtonFunction: () {
-                              Navigator.pushReplacement(
+                              Navigator.push(
                                   context,
                                   PageTransition(
                                       type: PageTransitionType.bottomToTop,
