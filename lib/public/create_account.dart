@@ -16,6 +16,9 @@ class _CreateAccountState extends State<CreateAccount> {
   final TextEditingController _uNameController = TextEditingController();
   final TextEditingController _uEmailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  var _formKey = GlobalKey<FormState>();
+  var isLoading = false;
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   bool _showPassword = true;
   Icon icon = Icon(Icons.visibility);
@@ -26,275 +29,297 @@ class _CreateAccountState extends State<CreateAccount> {
         resizeToAvoidBottomPadding: false,
         backgroundColor: Colors.brown[100],
         body: Container(
-            child: Column(children: <Widget>[
-          //for some space
-          Expanded(child: Container()),
+            child: Form(
+          key: _formKey,
+          child: Column(children: <Widget>[
+            //for some space
+            Expanded(child: Container()),
 
-          //create account details
-          Expanded(
-              flex: 7,
-              child: SingleChildScrollView(
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(30.0),
-                        topRight: Radius.circular(30.0),
-                      )),
-                  child: Form(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        //for some space
-                        SizedBox(
-                          height: 20,
-                        ),
-
-                        //Create account text
-                        Container(
-                          margin: EdgeInsets.only(bottom: 10),
-                          child: Text(
-                            "Create Account",
-                            style: TextStyle(
-                                fontFamily: "Baloo2",
-                                fontSize: 25.0,
-                                color: Colors.brown),
+            //create account details
+            Expanded(
+                flex: 7,
+                child: SingleChildScrollView(
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(30.0),
+                          topRight: Radius.circular(30.0),
+                        )),
+                    child: Form(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          //for some space
+                          SizedBox(
+                            height: 20,
                           ),
-                        ),
 
-                        //textfield same from log_in.dart
-                        Container(
-                          margin:
-                              EdgeInsets.only(left: 20, right: 20, bottom: 20),
-                          child: TextFormField(
-                            controller: _uNameController,
-                            cursorColor: Colors.brown[400],
-                            style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.brown,
-                                fontFamily: "Baloo2"),
-                            keyboardType: TextInputType.name,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              prefixIcon: Icon(
-                                Icons.account_box,
-                                color: Colors.brown[400],
-                              ),
-                              enabledBorder: const OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(20.0)),
-                                  borderSide: const BorderSide(
-                                    color: Colors.grey,
-                                    width: 2.0,
-                                  )),
-                              contentPadding: EdgeInsets.all(15),
-                              hintText: "UserName",
-                              hintStyle: TextStyle(fontFamily: "Baloo2"),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10.0)),
-                                borderSide:
-                                    BorderSide(color: Colors.brown, width: 2.0),
-                              ),
-                            ),
-                          ),
-                        ),
-                        //textfield same from log_in.dart
-                        Container(
-                          margin:
-                              EdgeInsets.only(left: 20, right: 20, bottom: 20),
-                          child: TextFormField(
-                            controller: _uEmailController,
-                            cursorColor: Colors.brown[400],
-                            style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.brown,
-                                fontFamily: "Baloo2"),
-                            keyboardType: TextInputType.emailAddress,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              prefixIcon: Icon(
-                                Icons.email,
-                                color: Colors.brown[400],
-                              ),
-                              enabledBorder: const OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(20.0)),
-                                  borderSide: const BorderSide(
-                                    color: Colors.grey,
-                                    width: 2.0,
-                                  )),
-                              contentPadding: EdgeInsets.all(15),
-                              hintText: "Email",
-                              hintStyle: TextStyle(fontFamily: "Baloo2"),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10.0)),
-                                borderSide:
-                                    BorderSide(color: Colors.brown, width: 2.0),
-                              ),
-                            ),
-                          ),
-                        ),
-                        //textfield same from log_in.dart
-                        Container(
-                          margin:
-                              EdgeInsets.only(left: 20, right: 20, bottom: 20),
-                          child: TextFormField(
-                            controller: _passwordController,
-                            cursorColor: Colors.brown[400],
-                            style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.brown,
-                                fontFamily: "Baloo2"),
-                            keyboardType: TextInputType.visiblePassword,
-                            obscureText: _showPassword,
-                            decoration: InputDecoration(
-                              prefixIcon: Icon(
-                                Icons.vpn_key,
-                                color: Colors.brown[400],
-                              ),
-                              suffixIcon: IconButton(
-                                icon: Icon(icon.icon, color: Colors.brown[400]),
-                                onPressed: () {
-                                  if (this._showPassword == true) {
-                                    setState(() {
-                                      this._showPassword = false;
-                                      this.icon = Icon(Icons.visibility_off);
-                                    });
-                                  } else {
-                                    setState(() {
-                                      this._showPassword = true;
-                                      this.icon = Icon(Icons.visibility);
-                                    });
-                                  }
-
-                                  // this._showPassword = !this._showPassword);
-                                },
-                              ),
-                              enabledBorder: const OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(20.0)),
-                                  borderSide: const BorderSide(
-                                    color: Colors.grey,
-                                    width: 2.0,
-                                  )),
-                              contentPadding: EdgeInsets.all(15),
-                              hintText: "Password",
-                              hintStyle: TextStyle(fontFamily: "Baloo2"),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10.0)),
-                                borderSide:
-                                    BorderSide(color: Colors.brown, width: 2.0),
-                              ),
-                            ),
-                          ),
-                        ),
-
-                        //or text
-                        Container(
+                          //Create account text
+                          Container(
+                            margin: EdgeInsets.only(bottom: 10),
                             child: Text(
-                                "- - - - - - - - - - or - - - - - - - - - - - -",
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.brown,
-                                    fontFamily: "Baloo2")
-                                  )
+                              "Create Account",
+                              style: TextStyle(
+                                  fontFamily: "Baloo2",
+                                  fontSize: 25.0,
+                                  color: Colors.brown),
+                            ),
+                          ),
+
+                          //textfield same from log_in.dart
+                          Container(
+                            margin: EdgeInsets.only(
+                                left: 20, right: 20, bottom: 20),
+                            child: TextFormField(
+                              controller: _uNameController,
+                              cursorColor: Colors.brown[400],
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.brown,
+                                  fontFamily: "Baloo2"),
+                              keyboardType: TextInputType.name,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(
+                                  Icons.account_box,
+                                  color: Colors.brown[400],
                                 ),
+                                enabledBorder: const OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(20.0)),
+                                    borderSide: const BorderSide(
+                                      color: Colors.grey,
+                                      width: 2.0,
+                                    )),
+                                contentPadding: EdgeInsets.all(15),
+                                hintText: "UserName",
+                                hintStyle: TextStyle(fontFamily: "Baloo2"),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10.0)),
+                                  borderSide: BorderSide(
+                                      color: Colors.brown, width: 2.0),
+                                ),
+                              ),
+                            ),
+                          ),
+                          //textfield same from log_in.dart
+                          Container(
+                            margin: EdgeInsets.only(
+                                left: 20, right: 20, bottom: 20),
+                            child: TextFormField(
+                              controller: _uEmailController,
+                              cursorColor: Colors.brown[400],
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.brown,
+                                  fontFamily: "Baloo2"),
+                              keyboardType: TextInputType.emailAddress,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(
+                                  Icons.email,
+                                  color: Colors.brown[400],
+                                ),
+                                enabledBorder: const OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(20.0)),
+                                    borderSide: const BorderSide(
+                                      color: Colors.grey,
+                                      width: 2.0,
+                                    )),
+                                contentPadding: EdgeInsets.all(15),
+                                hintText: "Email",
+                                hintStyle: TextStyle(fontFamily: "Baloo2"),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10.0)),
+                                  borderSide: BorderSide(
+                                      color: Colors.brown, width: 2.0),
+                                ),
+                              ),
+                            ),
+                          ),
+                          //textfield same from log_in.dart
+                          Container(
+                            margin: EdgeInsets.only(
+                                left: 20, right: 20, bottom: 20),
+                            child: TextFormField(
+                              controller: _passwordController,
+                              cursorColor: Colors.brown[400],
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.brown,
+                                  fontFamily: "Baloo2"),
+                              keyboardType: TextInputType.visiblePassword,
+                              obscureText: _showPassword,
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(
+                                  Icons.vpn_key,
+                                  color: Colors.brown[400],
+                                ),
+                                suffixIcon: IconButton(
+                                  icon:
+                                      Icon(icon.icon, color: Colors.brown[400]),
+                                  onPressed: () {
+                                    if (this._showPassword == true) {
+                                      setState(() {
+                                        this._showPassword = false;
+                                        this.icon = Icon(Icons.visibility_off);
+                                      });
+                                    } else {
+                                      setState(() {
+                                        this._showPassword = true;
+                                        this.icon = Icon(Icons.visibility);
+                                      });
+                                    }
 
-                        SignInButton(Buttons.Google,
-                            // padding: EdgeInsets.all(10),
-                            // text: "",
-                            // mini: true,
-                            onPressed: () {}),
-                        SignInButton(Buttons.FacebookNew,
-                            // text: "",
-                            // mini: true,
-                            onPressed: () {}),
+                                    // this._showPassword = !this._showPassword);
+                                  },
+                                ),
+                                enabledBorder: const OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(20.0)),
+                                    borderSide: const BorderSide(
+                                      color: Colors.grey,
+                                      width: 2.0,
+                                    )),
+                                contentPadding: EdgeInsets.all(15),
+                                hintText: "Password",
+                                hintStyle: TextStyle(fontFamily: "Baloo2"),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10.0)),
+                                  borderSide: BorderSide(
+                                      color: Colors.brown, width: 2.0),
+                                ),
+                              ),
+                            ),
+                          ),
 
-                        //for some space
-                        SizedBox(
-                          height: 45,
-                        ),
-
-                        //create account button
-                        Row(children: <Widget>[
-                          Expanded(
-                              child: Container(
-                            padding: EdgeInsets.only(bottom: 25),
-                            child: TwinkleButton(
-                                buttonWidth: 300,
-                                durationTime: null,
-                                buttonTitle: Text(
-                                  "Create Account",
+                          //or text
+                          Container(
+                              child: Text(
+                                  "- - - - - - - - - - or - - - - - - - - - - - -",
                                   style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20.0,
-                                      fontFamily: "Baloo2"),
-                                ),
-                                buttonColor: Colors.brown[500],
-                                onclickButtonFunction: () async {
-                                  String msg = await context
-                                      .read<AuthenticationService>()
-                                      .signUp(
-                                          email: _uEmailController.text.trim(),
-                                          password:
-                                              _passwordController.text.trim(),
-                                          uName: _uNameController.text.trim());
+                                      fontSize: 20,
+                                      color: Colors.brown,
+                                      fontFamily: "Baloo2"))),
 
-                                  if (msg == "Signed up") {
-                                    print("e");
+                          SignInButton(Buttons.Google,
+                              // padding: EdgeInsets.all(10),
+                              // text: "",
+                              // mini: true,
+                              onPressed: () {}),
+                          SignInButton(Buttons.FacebookNew,
+                              // text: "",
+                              // mini: true,
+                              onPressed: () {}),
+
+                          //for some space
+                          SizedBox(
+                            height: 45,
+                          ),
+
+                          //create account button
+                          Row(children: <Widget>[
+                            Expanded(
+                                child: Container(
+                              padding: EdgeInsets.only(bottom: 25),
+                              child: TwinkleButton(
+                                  buttonWidth: 300,
+                                  durationTime: null,
+                                  buttonTitle: Text(
+                                    "Create Account",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20.0,
+                                        fontFamily: "Baloo2"),
+                                  ),
+                                  buttonColor: Colors.brown[500],
+                                  onclickButtonFunction: () async {
+                                    String msg = await context
+                                        .read<AuthenticationService>()
+                                        .signUp(
+                                            email:
+                                                _uEmailController.text.trim(),
+                                            password:
+                                                _passwordController.text.trim(),
+                                            uName:
+                                                _uNameController.text.trim());
+                                    _uEmailController.text = "";
+                                    _passwordController.text = "";
+
+                                    if (msg == "Signed up") {
+                                      print("e");
+                                      Navigator.pushReplacement(
+                                          context,
+                                          PageTransition(
+                                              type: PageTransitionType
+                                                  .bottomToTop,
+                                              duration:
+                                                  Duration(milliseconds: 1000),
+                                              reverseDuration:
+                                                  Duration(milliseconds: 800),
+                                              child: Home()));
+                                    } else {
+                                      final snackBar = SnackBar(
+                                        content: Text(
+                                          "Invalid Password or Email",
+                                          style: TextStyle(
+                                              fontFamily: "Baloo2",
+                                              fontSize: 15),
+                                        ),
+                                        backgroundColor: Colors.brown[500],
+                                        duration: Duration(milliseconds: 1500),
+                                      );
+
+                                      _scaffoldKey.currentState
+                                          .showSnackBar(snackBar);
+                                    }
+                                  }),
+                            ))
+                          ]),
+
+                          //back to login button
+                          Row(children: <Widget>[
+                            Expanded(
+                                child: Container(
+                              padding: EdgeInsets.only(bottom: 20),
+                              child: TwinkleButton(
+                                  // twinkleTime: 1,
+                                  highlightColor: Colors.brown[100],
+                                  buttonWidth: 300,
+                                  durationTime: null,
+                                  buttonTitle: Text(
+                                    "Back to Log In",
+                                    style: TextStyle(
+                                        color: Colors.brown,
+                                        fontSize: 20.0,
+                                        fontFamily: "Baloo2"),
+                                  ),
+                                  buttonColor: Colors.white,
+                                  onclickButtonFunction: () {
                                     Navigator.pushReplacement(
                                         context,
                                         PageTransition(
                                             type:
                                                 PageTransitionType.bottomToTop,
                                             duration:
-                                                Duration(milliseconds: 1000),
+                                                Duration(milliseconds: 800),
                                             reverseDuration:
                                                 Duration(milliseconds: 800),
-                                            child: Home()));
-                                  }
-                                }),
-                          ))
-                        ]),
-
-                        //back to login button
-                        Row(children: <Widget>[
-                          Expanded(
-                              child: Container(
-                            padding: EdgeInsets.only(bottom: 20),
-                            child: TwinkleButton(
-                                // twinkleTime: 1,
-                                highlightColor: Colors.brown[100],
-                                buttonWidth: 300,
-                                durationTime: null,
-                                buttonTitle: Text(
-                                  "Back to Log In",
-                                  style: TextStyle(
-                                      color: Colors.brown,
-                                      fontSize: 20.0,
-                                      fontFamily: "Baloo2"),
-                                ),
-                                buttonColor: Colors.white,
-                                onclickButtonFunction: () {
-                                  Navigator.pushReplacement(
-                                      context,
-                                      PageTransition(
-                                          type: PageTransitionType.bottomToTop,
-                                          duration: Duration(milliseconds: 800),
-                                          reverseDuration:
-                                              Duration(milliseconds: 800),
-                                          child: Login()));
-                                }),
-                          ))
-                        ])
-                      ],
+                                            child: Login()));
+                                  }),
+                            ))
+                          ])
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              )),
-        ])));
+                )),
+          ]),
+        )));
   }
 }

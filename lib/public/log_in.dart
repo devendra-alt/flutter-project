@@ -6,7 +6,6 @@ import 'package:sign_up_app/public/landing.dart';
 import 'package:sign_up_app/services/auth.dart';
 import 'package:twinkle_button/twinkle_button.dart';
 import 'package:provider/provider.dart';
-import 'package:form_field_validator/form_field_validator.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -20,14 +19,13 @@ class _LoginState extends State<Login> {
   var isLoading = false;
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
-
   bool _showPassword = true;
   Icon icon = Icon(Icons.visibility);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
+        key: _scaffoldKey,
         resizeToAvoidBottomPadding: false,
         backgroundColor: Colors.brown[50],
         body: Container(
@@ -37,12 +35,12 @@ class _LoginState extends State<Login> {
             // 1.logo
             Expanded(
                 child: Container(
-                  decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("images/bg.png"),
-                fit: BoxFit.cover,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("images/bg.png"),
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
               child: logo1(),
             )),
 
@@ -82,7 +80,6 @@ class _LoginState extends State<Login> {
                           margin:
                               EdgeInsets.only(left: 20, right: 20, bottom: 20),
                           child: TextFormField(
-                           
                             controller: emailController,
                             cursorColor: Colors.brown[400],
                             style: TextStyle(
@@ -189,6 +186,8 @@ class _LoginState extends State<Login> {
                                         email: emailController.text.trim(),
                                         password:
                                             passwordController.text.trim());
+                                emailController.text = "";
+                                passwordController.text = "";
                                 if (msg == "Signed in") {
                                   print("e");
                                   Navigator.pushReplacement(
@@ -200,19 +199,21 @@ class _LoginState extends State<Login> {
                                           reverseDuration:
                                               Duration(milliseconds: 800),
                                           child: Home()));
-                                } else{
-                                  final snackBar=SnackBar(
+                                } else {
+                                  final snackBar = SnackBar(
                                     content: Text(
                                       "Invalid Password or Email",
-                                      style: TextStyle(fontFamily:"Baloo2",fontSize: 15),
-                                      ),
+                                      style: TextStyle(
+                                          fontFamily: "Baloo2", fontSize: 15),
+                                    ),
                                     backgroundColor: Colors.brown[500],
                                     duration: Duration(milliseconds: 1500),
-                                    );
-                                    
-                                  _scaffoldKey.currentState.showSnackBar(snackBar);
-                                    
-                                }},
+                                  );
+
+                                  _scaffoldKey.currentState
+                                      .showSnackBar(snackBar);
+                                }
+                              },
                               buttonWidth: 300,
                               durationTime: null,
                               buttonTitle: Text(
