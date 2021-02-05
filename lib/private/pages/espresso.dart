@@ -59,8 +59,9 @@ class _Detail_PageState extends State<Detail_Page> {
                     Text(
                       menu[widget.index].name,
                       style: TextStyle(
+                        fontFamily: "Pacifico",
                         fontSize: 32,
-                        fontWeight: FontWeight.bold,
+                        // fontWeight: FontWeight.bold,
                         color: Colors.black,
                       ),
                     ),
@@ -87,6 +88,7 @@ class _Detail_PageState extends State<Detail_Page> {
                     Text(
                       "Description",
                       style: TextStyle(
+                        fontFamily: "Baloo2",
                         color: Colors.black,
                         fontSize: 16,
                         fontWeight: FontWeight.w900,
@@ -98,11 +100,13 @@ class _Detail_PageState extends State<Detail_Page> {
                     Text(
                       menu[widget.index].desc,
                       style: TextStyle(
+                        fontFamily: "Baloo2",
                           fontSize: 16,
                           color: Colors.black,
                           fontWeight: FontWeight.normal,
-                          letterSpacing: 0.5,
-                          wordSpacing: 1.5),
+                          // letterSpacing: 0.5,
+                          // wordSpacing: 1.5
+                          ),
                     ),
                     SizedBox(
                       height: 40,
@@ -115,6 +119,7 @@ class _Detail_PageState extends State<Detail_Page> {
                             Text(
                               "Price",
                               style: TextStyle(
+                                fontFamily: "Baloo2",
                                 color: Colors.grey[500],
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
@@ -123,6 +128,7 @@ class _Detail_PageState extends State<Detail_Page> {
                             Text(
                               menu[widget.index].price.toString(),
                               style: TextStyle(
+                                fontFamily: "Baloo2",
                                   color: Colors.black,
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold),
@@ -137,7 +143,7 @@ class _Detail_PageState extends State<Detail_Page> {
                           padding: EdgeInsets.fromLTRB(35, 15, 35, 15),
                           child: Text(
                             "Add to cart",
-                            style: TextStyle(color: Colors.white, fontSize: 18),
+                            style: TextStyle(color: Colors.white, fontSize: 18,fontFamily: "Baloo2"),
                           ),
                         )
                       ],

@@ -7,6 +7,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: MyBottomNavigationBar(),
     );
   }
@@ -19,7 +20,7 @@ class MyBottomNavigationBar extends StatefulWidget {
 
 class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
   int Myindex = 0;
-  final List<Widget> children = [Homep(), Orderp(), Settingp()];
+  final List<Widget> children = [ Orderp(), Settingp()];
   void onTapped(int index) {
     setState(() {
       Myindex = index;
@@ -30,14 +31,25 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
     return new Scaffold(
       body: children[Myindex],
       bottomNavigationBar:
-          BottomNavigationBar(onTap: onTapped, currentIndex: Myindex, items: [
+          BottomNavigationBar(onTap: onTapped, currentIndex: Myindex, 
+          selectedItemColor: Colors.brown,
+          unselectedFontSize: 11,
+          selectedLabelStyle: TextStyle(fontFamily: "Baloo2"),
+          unselectedLabelStyle: TextStyle(fontFamily: "Baloo2"),
+          iconSize: 22,
+          items: 
+    
+          [
+          
+        // BottomNavigationBarItem(
+        //   icon: new Icon(Icons.star),
+        //   label: "Home",
+        // ),
         BottomNavigationBarItem(
-          icon: new Icon(Icons.star),
+          icon: new Icon(Icons.home),
           label: "Home",
-        ),
-        BottomNavigationBarItem(
-          icon: new Icon(Icons.shopping_cart),
-          label: "Order",
+          // backgroundColor: Colors.brown,
+          
         ),
         BottomNavigationBarItem(
           icon: new Icon(Icons.settings),
