@@ -45,7 +45,9 @@ class menuitemcard extends StatelessWidget {
                           Text(
                             menu[index].name,
                             style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
+                              fontFamily: "Lemonada",
+
+                                fontSize: 15, fontWeight: FontWeight.bold),
                           ),
                           SizedBox(
                             height: 20,
@@ -55,6 +57,7 @@ class menuitemcard extends StatelessWidget {
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
+                              fontFamily: "Baloo2"
                             ),
                           ),
                         ],

@@ -33,7 +33,10 @@ class menuitemcardob extends StatelessWidget {
                     Text(
                       menu[index].name,
                       style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                          TextStyle(
+                              fontFamily: "Lemonada",
+
+                            fontSize: 14, fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
                       height: 20,
@@ -41,6 +44,8 @@ class menuitemcardob extends StatelessWidget {
                     Text(
                       "₹. " + menu[index].price.toString(),
                       style: TextStyle(
+                              fontFamily: "Baloo2",
+
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
                       ),

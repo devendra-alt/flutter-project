@@ -22,7 +22,7 @@ List<Coffee> menu = [
       name: "Cafe Latte",
       price: "170",
       desc:
-          "A caffè latte is simply a shot or two of bold, tasty espresso with fresh, sweet steamed milk over it. Some prefer to add syrup or extra espresso to the recipe."),
+          "A caffè latte is simply a shot or two of bold, tasty espresso with fresh, sweet steamed milk over it."),
   Coffee(
       img: "images/caramel_mocha_1_tcm87-29619_w1024_n.jpeg",
       name: "Caramel Mocha",

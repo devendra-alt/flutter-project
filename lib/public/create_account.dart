@@ -4,8 +4,9 @@ import 'package:sign_up_app/private/home.dart';
 import 'package:sign_up_app/services/auth.dart';
 import 'package:twinkle_button/twinkle_button.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_signin_button/flutter_signin_button.dart';
+// import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'log_in.dart';
+import 'package:sign_button/sign_button.dart';
 
 class CreateAccount extends StatefulWidget {
   @override
@@ -206,20 +207,26 @@ class _CreateAccountState extends State<CreateAccount> {
                                       fontSize: 20,
                                       color: Colors.brown,
                                       fontFamily: "Baloo2"))),
-
-                          SignInButton(Buttons.Google,
-                              // padding: EdgeInsets.all(10),
-                              // text: "",
-                              // mini: true,
-                              onPressed: () {}),
-                          SignInButton(Buttons.FacebookNew,
-                              // text: "",
-                              // mini: true,
-                              onPressed: () {}),
+                          Column(
+                            children: <Widget>[
+                              Container(
+                                  margin: EdgeInsets.only(top: 10),
+                                  child: SignInButton(
+                                      buttonType: ButtonType.google,
+                                      onPressed: () {
+                                        print('click');
+                                      })),
+                              SignInButton(
+                                  buttonType: ButtonType.facebook,
+                                  onPressed: () {
+                                    print('click');
+                                  }),
+                            ],
+                          ),
 
                           //for some space
                           SizedBox(
-                            height: 45,
+                            height: 35,
                           ),
 
                           //create account button

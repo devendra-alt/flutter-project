@@ -38,6 +38,7 @@ dependencies:
   provider: ^4.3.2+3
   flutter_signin_button: ^1.1.0
   form_field_validator: ^1.0.1
+  sign_button: ^1.0.1
 
 dev_dependencies:
   flutter_test:
@@ -77,6 +78,10 @@ flutter:
     - family: Pacifico
       fonts:
         - asset: fonts/Pacifico/Pacifico-Regular.ttf
+
+    - family: Lemonada
+      fonts:
+        - asset: fonts/Lemonada/Lemonada-Regular.ttf
 
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

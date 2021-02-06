@@ -6,6 +6,7 @@ import 'package:sign_up_app/public/landing.dart';
 import 'package:sign_up_app/services/auth.dart';
 import 'package:twinkle_button/twinkle_button.dart';
 import 'package:provider/provider.dart';
+import 'package:sign_button/sign_button.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -65,7 +66,7 @@ class _LoginState extends State<Login> {
 
                         //Login to Continue Text
                         Container(
-                          margin: EdgeInsets.only(bottom: 20),
+                          margin: EdgeInsets.only(bottom: 15),
                           child: Text(
                             "Login to Continue",
                             style: TextStyle(
@@ -78,7 +79,7 @@ class _LoginState extends State<Login> {
                         //textfield fuction
                         Container(
                           margin:
-                              EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                              EdgeInsets.only(left: 20, right: 20, bottom: 15),
                           child: TextFormField(
                             controller: emailController,
                             cursorColor: Colors.brown[400],
@@ -114,7 +115,7 @@ class _LoginState extends State<Login> {
                         ),
                         Container(
                           margin:
-                              EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                              EdgeInsets.only(left: 20, right: 20, bottom: 15),
                           child: TextFormField(
                             controller: passwordController,
                             cursorColor: Colors.brown[400],
@@ -168,9 +169,32 @@ class _LoginState extends State<Login> {
                         ),
                         //textfield fuction
 
+                        Container(
+                            child: Text(
+                                "- - - - - - - - - - or - - - - - - - - - - - -",
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.brown,
+                                    fontFamily: "Baloo2"))),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            SignInButton.mini(
+                                buttonType: ButtonType.google,
+                                onPressed: () {
+                                  print('click');
+                                }),
+                            SignInButton.mini(
+                                buttonType: ButtonType.facebook,
+                                onPressed: () {
+                                  print('click');
+                                }),
+                          ],
+                        ),
+
                         //for some space
                         SizedBox(
-                          height: 81,
+                          height: 25,
                         ),
 
                         //Login Button
@@ -185,7 +209,9 @@ class _LoginState extends State<Login> {
                                     .signIn(
                                         email: emailController.text.trim(),
                                         password:
-                                            passwordController.text.trim());
+                                            passwordController.text.trim(),
+                                            
+                                            );
                                 emailController.text = "";
                                 passwordController.text = "";
                                 if (msg == "Signed in") {
@@ -232,7 +258,7 @@ class _LoginState extends State<Login> {
                         Row(children: <Widget>[
                           Expanded(
                               child: Container(
-                            padding: EdgeInsets.only(bottom: 25),
+                            padding: EdgeInsets.only(bottom: 20),
                             child: TwinkleButton(
                                 // twinkleTime: 1,
                                 highlightColor: Colors.brown[100],
