@@ -2,9 +2,9 @@ import 'package:sign_up_app/private/model/coffeemodel.dart';
 import 'package:sign_up_app/private/pages/espresso.dart';
 import 'package:flutter/material.dart';
 
-class menuitemcard extends StatelessWidget {
+class MenuItemCard extends StatelessWidget {
   final int index;
-  menuitemcard({this.index});
+  MenuItemCard({this.index});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,7 +19,7 @@ class menuitemcard extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => Detail_Page(
+                          builder: (context) => DetailPage(
                                 index: index,
                               )));
                 },
@@ -45,9 +45,9 @@ class menuitemcard extends StatelessWidget {
                           Text(
                             menu[index].name,
                             style: TextStyle(
-                              fontFamily: "Lemonada",
-
-                                fontSize: 15, fontWeight: FontWeight.bold),
+                                fontFamily: "Lemonada",
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold),
                           ),
                           SizedBox(
                             height: 20,
@@ -55,10 +55,9 @@ class menuitemcard extends StatelessWidget {
                           Text(
                             "₹. " + menu[index].price.toString(),
                             style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                              fontFamily: "Baloo2"
-                            ),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                                fontFamily: "Baloo2"),
                           ),
                         ],
                       ),
@@ -71,7 +70,7 @@ class menuitemcard extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => Detail_Page(
+                            builder: (context) => DetailPage(
                                   index: index,
                                 )));
                   },

@@ -1,14 +1,14 @@
 import 'package:sign_up_app/private/model/coffeemodel.dart';
 import 'package:flutter/material.dart';
 
-class Detail_Page extends StatefulWidget {
+class DetailPage extends StatefulWidget {
   final int index;
-  Detail_Page({Key key, this.index}) : super(key: key);
+  DetailPage({Key key, this.index}) : super(key: key);
   @override
-  _Detail_PageState createState() => _Detail_PageState();
+  DetailPageState createState() => DetailPageState();
 }
 
-class _Detail_PageState extends State<Detail_Page> {
+class DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -101,12 +101,12 @@ class _Detail_PageState extends State<Detail_Page> {
                       menu[widget.index].desc,
                       style: TextStyle(
                         fontFamily: "Baloo2",
-                          fontSize: 16,
-                          color: Colors.black,
-                          fontWeight: FontWeight.normal,
-                          // letterSpacing: 0.5,
-                          // wordSpacing: 1.5
-                          ),
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontWeight: FontWeight.normal,
+                        // letterSpacing: 0.5,
+                        // wordSpacing: 1.5
+                      ),
                     ),
                     SizedBox(
                       height: 40,
@@ -128,7 +128,7 @@ class _Detail_PageState extends State<Detail_Page> {
                             Text(
                               menu[widget.index].price.toString(),
                               style: TextStyle(
-                                fontFamily: "Baloo2",
+                                  fontFamily: "Baloo2",
                                   color: Colors.black,
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold),
@@ -143,7 +143,10 @@ class _Detail_PageState extends State<Detail_Page> {
                           padding: EdgeInsets.fromLTRB(35, 15, 35, 15),
                           child: Text(
                             "Add to cart",
-                            style: TextStyle(color: Colors.white, fontSize: 18,fontFamily: "Baloo2"),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontFamily: "Baloo2"),
                           ),
                         )
                       ],

@@ -39,6 +39,8 @@ dependencies:
   flutter_signin_button: ^1.1.0
   form_field_validator: ^1.0.1
   sign_button: ^1.0.1
+  google_sign_in: ^4.5.9
+
 
 dev_dependencies:
   flutter_test:

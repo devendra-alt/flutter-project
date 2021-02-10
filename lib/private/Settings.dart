@@ -7,57 +7,47 @@ import 'package:provider/provider.dart';
 // import 'package:sign_up_app/services/modules/User.dart';
 // import 'package:sign_up_app/public/create_account.dart';
 // import 'package:sign_up_app/services/auth.dart';
-   
-class Settingp extends StatelessWidget {
 
+class Settingp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-   final FirebaseAuth auth = FirebaseAuth.instance;
+    final FirebaseAuth auth = FirebaseAuth.instance;
 
     final User user = auth.currentUser;
     // final uName = user.displayName;
     final uemail = user.email;
-           
-  
 
-  
     return Scaffold(
-      // backgroundColor: Colors.lightBlue,
-      body: Container(
-       
-        child:Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        // backgroundColor: Colors.lightBlue,
+        body: Container(
+            child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
 
-          // crossAxisAlignment: CrossAxisAlignment.end,
-          children: <Widget>[
-            Text(uemail),
-   FlatButton.icon(
-     
-              onPressed: () async {
-                bool isGood =
-                    await context.read<AuthenticationService>().signOut();
-                if (isGood) {
-                  Navigator.pushReplacement(
-                      context,
-                      PageTransition(
-                          type: PageTransitionType.bottomToTop,
-                          duration: Duration(milliseconds: 800),
-                          reverseDuration: Duration(milliseconds: 800),
-                          child: Landing()));
-                } else {
-                  Scaffold.of(context).showSnackBar((SnackBar(
-                    content: Text("error happening"),
-                  )));
-                }
-              },
-              icon: Icon(Icons.unsubscribe_rounded),
-              label: Text("signout"))
-    
-      
-        ],)
-    ));
+      // crossAxisAlignment: CrossAxisAlignment.end,
+      children: <Widget>[
+        Text(uemail),
+        TextButton.icon(
+            onPressed: () async {
+              bool isGood =
+                  await context.read<AuthenticationService>().signOut();
+              if (isGood) {
+                Navigator.pushReplacement(
+                    context,
+                    PageTransition(
+                        type: PageTransitionType.bottomToTop,
+                        duration: Duration(milliseconds: 800),
+                        reverseDuration: Duration(milliseconds: 800),
+                        child: Landing()));
+              } else {
+                ScaffoldMessenger.maybeOf(context)
+                    .showSnackBar((SnackBar(content: Text("error happening"))));
+              }
+            },
+            icon: Icon(Icons.unsubscribe_rounded),
+            label: Text("signout"))
+      ],
+    )));
   }
-
 }
 
 /*class Listview extends StatelessWidget {

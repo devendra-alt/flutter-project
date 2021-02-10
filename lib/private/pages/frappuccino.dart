@@ -1,14 +1,14 @@
 import 'package:sign_up_app/private/model/coffeemodelfrappuccino.dart';
 import 'package:flutter/material.dart';
 
-class Detail_Page3 extends StatefulWidget {
+class DetailPage3 extends StatefulWidget {
   final int index;
-  Detail_Page3({Key key, this.index}) : super(key: key);
+  DetailPage3({Key key, this.index}) : super(key: key);
   @override
-  _Detail_Page3State createState() => _Detail_Page3State();
+  _DetailPage3State createState() => _DetailPage3State();
 }
 
-class _Detail_Page3State extends State<Detail_Page3> {
+class _DetailPage3State extends State<DetailPage3> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -90,7 +90,6 @@ class _Detail_Page3State extends State<Detail_Page3> {
                       "Description",
                       style: TextStyle(
                         fontFamily: "Baloo2",
-
                         color: Colors.black,
                         fontSize: 16,
                         fontWeight: FontWeight.w900,
@@ -104,12 +103,12 @@ class _Detail_Page3State extends State<Detail_Page3> {
                       style: TextStyle(
                         fontFamily: "Baloo2",
 
-                          fontSize: 16,
-                          color: Colors.black,
-                          fontWeight: FontWeight.normal,
-                          // letterSpacing: 0.5,
-                          // wordSpacing: 1.5
-                          ),
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontWeight: FontWeight.normal,
+                        // letterSpacing: 0.5,
+                        // wordSpacing: 1.5
+                      ),
                     ),
                     SizedBox(
                       height: 40,
@@ -122,8 +121,7 @@ class _Detail_Page3State extends State<Detail_Page3> {
                             Text(
                               "Price",
                               style: TextStyle(
-                        fontFamily: "Baloo2",
-
+                                fontFamily: "Baloo2",
                                 color: Colors.grey[500],
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
@@ -132,8 +130,7 @@ class _Detail_Page3State extends State<Detail_Page3> {
                             Text(
                               menu[widget.index].price.toString(),
                               style: TextStyle(
-                        fontFamily: "Baloo2",
-
+                                  fontFamily: "Baloo2",
                                   color: Colors.black,
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold),
@@ -149,8 +146,9 @@ class _Detail_Page3State extends State<Detail_Page3> {
                           child: Text(
                             "Add to cart",
                             style: TextStyle(
-                        fontFamily: "Baloo2",
-                              color: Colors.white, fontSize: 18),
+                                fontFamily: "Baloo2",
+                                color: Colors.white,
+                                fontSize: 18),
                           ),
                         )
                       ],

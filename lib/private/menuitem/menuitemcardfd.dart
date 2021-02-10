@@ -2,9 +2,9 @@ import 'package:sign_up_app/private/pages/featured.dart';
 import 'package:flutter/material.dart';
 import '../model/coffeemodelfeatured.dart';
 
-class menuitemcardfd extends StatelessWidget {
+class MenuItemCardFd extends StatelessWidget {
   final int index;
-  menuitemcardfd({this.index});
+  MenuItemCardFd({this.index});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,9 +19,7 @@ class menuitemcardfd extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => Detail_Page2(
-                                index: index,
-                              )));
+                          builder: (context) => DetailPage2(index: index)));
                 },
                 child: Row(
                   children: <Widget>[
@@ -44,8 +42,9 @@ class menuitemcardfd extends StatelessWidget {
                           Text(
                             menu[index].name,
                             style: TextStyle(
-                              fontFamily: "Lemonada",
-                                fontSize: 14, fontWeight: FontWeight.bold),
+                                fontFamily: "Lemonada",
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold),
                           ),
                           SizedBox(
                             height: 20,
@@ -54,7 +53,6 @@ class menuitemcardfd extends StatelessWidget {
                             "₹. " + menu[index].price.toString(),
                             style: TextStyle(
                               fontFamily: "Baloo2",
-
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
                             ),
@@ -70,7 +68,7 @@ class menuitemcardfd extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => Detail_Page2(
+                            builder: (context) => DetailPage2(
                                   index: index,
                                 )));
                   },
