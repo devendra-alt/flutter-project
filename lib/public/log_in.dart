@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:sign_up_app/private/home.dart';
 import 'package:sign_up_app/public/create_account.dart';
 import 'package:sign_up_app/public/landing.dart';
-import 'package:sign_up_app/services/auth.dart';
+import 'package:sign_up_app/services/UIAuth.dart';
 import 'package:twinkle_button/twinkle_button.dart';
-import 'package:provider/provider.dart';
 import 'package:sign_button/sign_button.dart';
+import 'package:sign_up_app/services/input_validations.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -14,8 +13,8 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -79,23 +78,27 @@ class _LoginState extends State<Login> {
                           ),
                         ),
 
-                        //textfield fuction
+                        //textField Function
                         Container(
-                          margin:
-                              EdgeInsets.only(left: 20, right: 20, bottom: 15),
+                          margin: EdgeInsets.only(
+                            left: 20,
+                            right: 20,
+                            bottom: 15,
+                          ),
                           child: TextFormField(
                             validator: (value) {
-                              if (value.isEmpty)
-                                return "Email is required";
-                              else
+                              if (value.isValidEmail())
                                 return null;
+                              else
+                                return "please check your email";
                             },
-                            controller: emailController,
+                            controller: _email,
                             cursorColor: Colors.brown[400],
                             style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.brown,
-                                fontFamily: "Baloo2"),
+                              fontSize: 18,
+                              color: Colors.brown,
+                              fontFamily: "Baloo2",
+                            ),
                             keyboardType: TextInputType.emailAddress,
                             obscureText: false,
                             decoration: InputDecoration(
@@ -119,8 +122,10 @@ class _LoginState extends State<Login> {
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(10.0),
                                 ),
-                                borderSide:
-                                    BorderSide(color: Colors.brown, width: 2.0),
+                                borderSide: BorderSide(
+                                  color: Colors.brown,
+                                  width: 2.0,
+                                ),
                               ),
                             ),
                           ),
@@ -130,12 +135,12 @@ class _LoginState extends State<Login> {
                               EdgeInsets.only(left: 20, right: 20, bottom: 15),
                           child: TextFormField(
                             validator: (value) {
-                              if (value.isEmpty)
-                                return "Password is required";
-                              else
+                              if (value.isValidPassword())
                                 return null;
+                              else
+                                return "password is required";
                             },
-                            controller: passwordController,
+                            controller: _password,
                             cursorColor: Colors.brown[400],
                             style: TextStyle(
                                 fontSize: 18,
@@ -166,7 +171,6 @@ class _LoginState extends State<Login> {
                                       },
                                     );
                                   }
-
                                   // this._showPassword = !this._showPassword);
                                 },
                               ),
@@ -210,21 +214,12 @@ class _LoginState extends State<Login> {
                             SignInButton.mini(
                               buttonType: ButtonType.google,
                               onPressed: () async {
-                                String msg = await context
-                                    .read<AuthenticationService>()
-                                    .signInWithGoogle();
-                                if (msg.isNotEmpty) {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.bottomToTop,
-                                      duration: Duration(milliseconds: 1000),
-                                      reverseDuration:
-                                          Duration(milliseconds: 800),
-                                      child: Home(),
-                                    ),
-                                  );
-                                }
+                                getGoogleSignUI(context);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text("proccessing"),
+                                  ),
+                                );
                               },
                             ),
                             SignInButton.mini(
@@ -250,45 +245,19 @@ class _LoginState extends State<Login> {
                                 child: TwinkleButton(
                                   onclickButtonFunction: () async {
                                     if (_formKey.currentState.validate()) {
-                                      String msg = await context
-                                          .read<AuthenticationService>()
-                                          .signIn(
-                                            email: emailController.text.trim(),
-                                            password:
-                                                passwordController.text.trim(),
-                                          );
-                                      emailController.text = "";
-                                      passwordController.text = "";
-                                      if (msg == "Signed in") {
-                                        print("e");
-                                        Navigator.pushReplacement(
-                                          context,
-                                          PageTransition(
-                                            type:
-                                                PageTransitionType.bottomToTop,
-                                            duration:
-                                                Duration(milliseconds: 1000),
-                                            reverseDuration:
-                                                Duration(milliseconds: 800),
-                                            child: Home(),
-                                          ),
-                                        );
-                                      } else {
-                                        final snackBar = SnackBar(
-                                          content: Text(
-                                            "Invalid Password or Email",
-                                            style: TextStyle(
-                                                fontFamily: "Baloo2",
-                                                fontSize: 15),
-                                          ),
-                                          backgroundColor: Colors.brown[500],
-                                          duration:
-                                              Duration(milliseconds: 1500),
-                                        );
-
-                                        _scaffoldKey.currentState
-                                            .showSnackBar(snackBar);
-                                      }
+                                      getSignInUI(
+                                        context,
+                                        _email.text.trim(),
+                                        _password.text.trim(),
+                                      );
+                                      _email.clear();
+                                      _password.clear();
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text("proccessing"),
+                                        ),
+                                      );
                                     }
                                   },
                                   buttonWidth: 300,
@@ -317,7 +286,6 @@ class _LoginState extends State<Login> {
                                   // twinkleTime: 1,
                                   highlightColor: Colors.brown[100],
                                   buttonWidth: 300,
-                                  durationTime: null,
                                   buttonTitle: Text(
                                     "Create Account",
                                     style: TextStyle(

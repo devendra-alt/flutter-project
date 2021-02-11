@@ -40,7 +40,7 @@ dependencies:
   form_field_validator: ^1.0.1
   sign_button: ^1.0.1
   google_sign_in: ^4.5.9
-
+  flutter_spinkit: ^4.1.2
 
 dev_dependencies:
   flutter_test:

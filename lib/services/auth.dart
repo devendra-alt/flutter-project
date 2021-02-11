@@ -6,25 +6,25 @@ class AuthenticationService {
   AuthenticationService(this._firebaseAuth);
 
   final GoogleSignIn googleSignIn = GoogleSignIn();
-  //tracking users status
-  Stream<User> get authStateChanges => _firebaseAuth.idTokenChanges();
 
-  Future<String> signIn({String email, String password, String uName}) async {
+  bool _isGoogleSignIn = false;
+  Stream<User> get authStateChanges => _firebaseAuth.idTokenChanges();
+  Future<dynamic> signIn({String email, String password}) async {
     try {
       await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
       print("sucess");
-
-      return "Signed in";
+      return true;
     } on FirebaseAuthException catch (e) {
+      print("error in sign in (connection error XD)");
       print(e.message);
-      return null;
+      return e.message;
     }
   }
 
-  Future<String> signInWithGoogle() async {
+  Future<dynamic> signInWithGoogle() async {
     final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
     final GoogleSignInAuthentication googleSignInAuthentication =
         await googleSignInAccount.authentication;
@@ -37,7 +37,6 @@ class AuthenticationService {
     final UserCredential authResult =
         await _firebaseAuth.signInWithCredential(credential);
     final User user = authResult.user;
-
     if (user != null) {
       assert(!user.isAnonymous);
       assert(await user.getIdToken() != null);
@@ -45,39 +44,42 @@ class AuthenticationService {
       final User currentUser = _firebaseAuth.currentUser;
       assert(user.uid == currentUser.uid);
 
-      print('signInWithGoogle succeeded: $user');
-
-      return '$user';
+      print(
+        'signInWithGoogle succeeded: ${user.displayName} ${user.email} ${user.uid}',
+      );
+      _isGoogleSignIn = true;
+      return true;
     }
-
-    return null;
+    _isGoogleSignIn = false;
+    return "error ! try again later";
   }
 
-  Future<void> signOutGoogle() async {
-    await googleSignIn.signOut();
-
-    print("User Signed Out");
-  }
-
-  Future<String> signUp({String email, String password, String uName}) async {
+  Future<dynamic> signUp({String email, String password, String uName}) async {
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(
-          email: email, password: password);
-
-      return "Signed up";
+        email: email,
+        password: password,
+      );
+      _firebaseAuth.currentUser.updateProfile(displayName: uName);
+      return true;
     } on FirebaseAuthException catch (e) {
+      print("sign up error message");
       print(e.message);
-      return null;
+      return e.message;
     }
   }
 
-  Future<bool> signOut() async {
+  Future<dynamic> signOut() async {
     try {
-      await _firebaseAuth.signOut();
+      if (_isGoogleSignIn) {
+        googleSignIn.signOut();
+        googleSignIn.disconnect();
+      }
+      _firebaseAuth.signOut();
       return true;
     } catch (e) {
       print(e.message);
-      return false;
+      return e.message;
     }
   }
 }

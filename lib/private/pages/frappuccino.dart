@@ -137,6 +137,7 @@ class _DetailPage3State extends State<DetailPage3> {
                             )
                           ],
                         ),
+                        // ignore: deprecated_member_use
                         RaisedButton(
                           onPressed: () {},
                           shape: RoundedRectangleBorder(

@@ -73,8 +73,8 @@ class _LandingState extends State<Landing> {
                             context,
                             PageTransition(
                               type: PageTransitionType.bottomToTop,
-                              duration: Duration(milliseconds: 1000),
-                              reverseDuration: Duration(milliseconds: 800),
+                              duration: Duration(milliseconds: 800),
+                              reverseDuration: Duration(milliseconds: 700),
                               child: Login(),
                             ),
                           );
