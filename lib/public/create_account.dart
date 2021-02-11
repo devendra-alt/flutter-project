@@ -188,7 +188,7 @@ class _CreateAccountState extends State<CreateAccount> {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
-                                    "capita letters small letters ,special charcters numbers expected",
+                                    "capital letters small letters ,special charcters numbers expected in password",
                                   ),
                                 ),
                               );

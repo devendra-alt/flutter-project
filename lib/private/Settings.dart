@@ -1,12 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:sign_up_app/services/UIAuth.dart';
 
 class Settingp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final FirebaseAuth _auth = FirebaseAuth.instance;
-
     final User _user = _auth.currentUser;
     final _profile = _user.photoURL != null
         ? _user.photoURL
@@ -50,13 +50,9 @@ class Settingp extends StatelessWidget {
                 height: 10,
               ),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
+                  
                   getSignOutUI(context);
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text("proccessing"),
-                    ),
-                  );
                 },
                 child: Text(
                   "SignOut",

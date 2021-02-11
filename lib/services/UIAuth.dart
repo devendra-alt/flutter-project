@@ -24,7 +24,8 @@ Future<dynamic> getSignInUI(
         child: Home(),
       ),
     );
-  } else {
+  }
+  else {
     final snackBar = SnackBar(
       content: Text(status),
     );

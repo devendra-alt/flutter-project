@@ -25,33 +25,40 @@ class AuthenticationService {
   }
 
   Future<dynamic> signInWithGoogle() async {
-    final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
-    final GoogleSignInAuthentication googleSignInAuthentication =
-        await googleSignInAccount.authentication;
+    try {
+      final GoogleSignInAccount googleSignInAccount =
+          await googleSignIn.signIn();
+      final GoogleSignInAuthentication googleSignInAuthentication =
+          await googleSignInAccount.authentication;
 
-    final AuthCredential credential = GoogleAuthProvider.credential(
-      accessToken: googleSignInAuthentication.accessToken,
-      idToken: googleSignInAuthentication.idToken,
-    );
-
-    final UserCredential authResult =
-        await _firebaseAuth.signInWithCredential(credential);
-    final User user = authResult.user;
-    if (user != null) {
-      assert(!user.isAnonymous);
-      assert(await user.getIdToken() != null);
-
-      final User currentUser = _firebaseAuth.currentUser;
-      assert(user.uid == currentUser.uid);
-
-      print(
-        'signInWithGoogle succeeded: ${user.displayName} ${user.email} ${user.uid}',
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleSignInAuthentication.accessToken,
+        idToken: googleSignInAuthentication.idToken,
       );
-      _isGoogleSignIn = true;
-      return true;
+
+      final UserCredential authResult =
+          await _firebaseAuth.signInWithCredential(credential);
+      final User user = authResult.user;
+      if (user != null) {
+        assert(!user.isAnonymous);
+        assert(await user.getIdToken() != null);
+
+        final User currentUser = _firebaseAuth.currentUser;
+        assert(user.uid == currentUser.uid);
+
+        print(
+          'signInWithGoogle succeeded: ${user.displayName} ${user.email} ${user.uid}',
+        );
+        _isGoogleSignIn = true;
+        return true;
+      }
+      _isGoogleSignIn = false;
+    } catch (e) {
+      print("error ! try again later");
+      print("error stack : ");
+      print(e.message);
+      return "error ! try again later";
     }
-    _isGoogleSignIn = false;
-    return "error ! try again later";
   }
 
   Future<dynamic> signUp({String email, String password, String uName}) async {
@@ -77,6 +84,9 @@ class AuthenticationService {
       }
       _firebaseAuth.signOut();
       return true;
+    } on FirebaseAuthException catch (e) {
+      print(e.message);
+      return e.message;
     } catch (e) {
       print(e.message);
       return e.message;
