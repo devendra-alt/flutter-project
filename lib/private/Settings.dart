@@ -8,8 +8,9 @@ class Settingp extends StatelessWidget {
     final FirebaseAuth _auth = FirebaseAuth.instance;
 
     final User _user = _auth.currentUser;
-    final _profile =
-        _user.photoURL != null ? _user.photoURL : "images/profile.png";
+    final _profile = _user.photoURL != null
+        ? _user.photoURL
+        : 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png';
     final _userName = _user.displayName != null ? _user.displayName : "none";
     return Scaffold(
       // backgroundColor: Colors.lightBlue,
