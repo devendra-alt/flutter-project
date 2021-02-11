@@ -14,6 +14,17 @@ class MenuItemCardDob extends StatelessWidget {
         child: Container(
           child: Row(
             children: <Widget>[
+              GestureDetector(
+              onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Detail_Page(
+                                index: index,
+                              )));
+                },
+              child: Row(
+                  children: [
               AspectRatio(
                 aspectRatio: 1 / 1,
                 child: ClipRRect(
@@ -49,6 +60,9 @@ class MenuItemCardDob extends StatelessWidget {
                       ),
                     ),
                   ],
+                ),
+              ),
+             ],
                 ),
               ),
               IconButton(
