@@ -2,9 +2,9 @@ import 'package:sign_up_app/private/pages/frappuccino.dart';
 import 'package:flutter/material.dart';
 import '../model/coffeemodelfrappuccino.dart';
 
-class menuitemcardfrapp extends StatelessWidget {
+class MenuItemCardFrapp extends StatelessWidget {
   final int index;
-  menuitemcardfrapp({this.index});
+  MenuItemCardFrapp({this.index});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,10 +32,10 @@ class menuitemcardfrapp extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       menu[index].name,
-                      style:
-                          TextStyle(
-                              fontFamily: "Lemonada",
-                            fontSize: 14, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          fontFamily: "Lemonada",
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
                       height: 20,
@@ -43,8 +43,7 @@ class menuitemcardfrapp extends StatelessWidget {
                     Text(
                       "₹. " + menu[index].price.toString(),
                       style: TextStyle(
-                              fontFamily: "Baloo2",
-                        
+                        fontFamily: "Baloo2",
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
                       ),
@@ -57,7 +56,7 @@ class menuitemcardfrapp extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => Detail_Page3(
+                            builder: (context) => DetailPage3(
                                   index: index,
                                 )));
                   },

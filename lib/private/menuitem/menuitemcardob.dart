@@ -2,9 +2,9 @@ import 'package:sign_up_app/private/pages/otherbeverages.dart';
 import 'package:flutter/material.dart';
 import '../model/coffeemodelob.dart';
 
-class menuitemcardob extends StatelessWidget {
+class MenuItemCardDob extends StatelessWidget {
   final int index;
-  menuitemcardob({this.index});
+  MenuItemCardDob({this.index});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,11 +32,10 @@ class menuitemcardob extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       menu[index].name,
-                      style:
-                          TextStyle(
-                              fontFamily: "Lemonada",
-
-                            fontSize: 14, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          fontFamily: "Lemonada",
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
                       height: 20,
@@ -44,8 +43,7 @@ class menuitemcardob extends StatelessWidget {
                     Text(
                       "₹. " + menu[index].price.toString(),
                       style: TextStyle(
-                              fontFamily: "Baloo2",
-
+                        fontFamily: "Baloo2",
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
                       ),
@@ -58,7 +56,7 @@ class menuitemcardob extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => Detail_Page4(
+                            builder: (context) => DetailPage4(
                                   index: index,
                                 )));
                   },
