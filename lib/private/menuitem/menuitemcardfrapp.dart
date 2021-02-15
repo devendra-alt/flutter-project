@@ -14,6 +14,15 @@ class MenuItemCardFrapp extends StatelessWidget {
         child: Container(
           child: Row(
             children: <Widget>[
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => DetailPage3(index: index)));
+                },
+                child: Row(
+                  children: <Widget>[
               AspectRatio(
                 aspectRatio: 1 / 1,
                 child: ClipRRect(
@@ -49,6 +58,9 @@ class MenuItemCardFrapp extends StatelessWidget {
                       ),
                     ),
                   ],
+                ),
+              ),
+                    ],
                 ),
               ),
               IconButton(
