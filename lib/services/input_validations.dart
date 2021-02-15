@@ -1,7 +1,3 @@
-// import 'dart:js';
-
-import 'package:flutter/material.dart';
-
 extension EmailValidator on String {
   bool isValidEmail() {
     return RegExp(
@@ -18,15 +14,6 @@ extension SignUpEmailValidator on String {
   }
 }
 
-extension SignInPasswordValidator on String {
-  bool isValidPassword() {
-    if (this.isEmpty)
-      return false;
-    else
-      return true;
-  }
-}
-
 extension SignUpPasswordValidator on String {
   bool validateStructure() {
     String pattern =
@@ -39,7 +26,7 @@ extension SignUpPasswordValidator on String {
 extension UserNameValidator on String {
   dynamic validateUserName() {
     if (this.isEmpty)
-      return "username is required";
+      return "required field missing";
     else if (this.length < 5)
       return "username should be long";
     else if (this.length > 13)
