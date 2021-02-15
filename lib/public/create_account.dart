@@ -23,22 +23,18 @@ class _CreateAccountState extends State<CreateAccount> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
-<<<<<<< HEAD
-        // resizeToAvoidBottomPadding: false,
-        backgroundColor: Colors.brown[100],
-        body: Container(
-            child: Form(
-          key: _formKey,
-          child: Column(children: <Widget>[
-=======
       key: _scaffoldKey,
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.brown[100],
       body: Container(
         child: Column(
+          // crossAxisAlignment: CrossAxisAlignment.end,
+          // mainAxisSize: MainAxisSize.max,
+          // mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
->>>>>>> f3a9f812e2150fc0eae7735a0c19a37baee3ec3d
             //for some space
             Expanded(
               child: Container(),
@@ -49,6 +45,7 @@ class _CreateAccountState extends State<CreateAccount> {
               flex: 7,
               child: SingleChildScrollView(
                 child: Container(
+                  // height: height-110,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
@@ -86,13 +83,21 @@ class _CreateAccountState extends State<CreateAccount> {
                             bottom: 20,
                           ),
                           child: TextFormField(
-                            validator: (value) {
-                              String status = value.validateUserName();
-                              if (status == null)
-                                return null;
-                              else
-                                return status;
-                            },
+                            // validator: (value) {
+                            //   String status = value.validateUserName();
+                            //   if (status == null)
+                            //     return null;
+                            //   ScaffoldMessenger.of(context).showSnackBar(
+                            //     SnackBar(
+                            //       content: Text(
+                            //         "UserName is Required",
+                            //       ),
+                            //       backgroundColor: Colors.brown,
+                            //       // duration: Duration(seconds: 3),
+                            //     ),
+                            //   );
+                              // return null;
+                            // },
                             controller: _uname,
                             cursorColor: Colors.brown[400],
                             style: TextStyle(
@@ -138,12 +143,12 @@ class _CreateAccountState extends State<CreateAccount> {
                             bottom: 20,
                           ),
                           child: TextFormField(
-                            validator: (value) {
-                              if (value.isValidEmailid())
-                                return null;
-                              else
-                                return "please check your email";
-                            },
+                            // validator: (value) {
+                            //   if (value.isValidEmailid())
+                            //     return null;
+                            //   else
+                            //     return "please check your email";
+                            // },
                             controller: _email,
                             cursorColor: Colors.brown[400],
                             style: TextStyle(
@@ -191,18 +196,25 @@ class _CreateAccountState extends State<CreateAccount> {
                           ),
                           child: TextFormField(
                             validator: (value) {
+                              print(value);
                               if (value.validateStructure()) {
                                 return null;
                               }
+                              else if(value==""){
+                                return null;
+                              }
+                              else{
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
-                                    "capital letters small letters ,special charcters numbers expected in password",
+                                    "Password must contain Capital letters ,Small letters ,Special Charcters , Numbers",
                                   ),
+                                  backgroundColor: Colors.brown,
+                                  duration: Duration(seconds: 3),
                                 ),
                               );
-                              return "strong password required";
-                            },
+                              return null;
+                            }},
                             controller: _password,
                             cursorColor: Colors.brown[400],
                             style: TextStyle(
@@ -288,18 +300,24 @@ class _CreateAccountState extends State<CreateAccount> {
                                   getGoogleSignUI(context);
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
-                                      content: Text("proccessing"),
+                                       content: Text("Proccessing ..."),
+                                    duration: Duration(milliseconds: 1500),
+                                    backgroundColor: Colors.brown,
                                     ),
                                   );
                                 },
                               ),
                             ),
                             SignInButton(
+                                // padding: 10,
+                                // imagePosition:ImagePosition.right,
                               buttonType: ButtonType.facebook,
                               onPressed: () {
+                            // print(height);
+
                                 print('click');
                               },
-                            ),
+                             ) ,
                           ],
                         ),
 
@@ -333,15 +351,15 @@ class _CreateAccountState extends State<CreateAccount> {
                                         _email.text.trim(),
                                         _password.text.trim(),
                                       );
-                                      _uname.clear();
-                                      _email.clear();
-                                      _password.clear();
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: Text("proccessing"),
-                                        ),
-                                      );
+                                      // _uname.clear();
+                                      // _email.clear();
+                                      // _password.clear();
+                                      // ScaffoldMessenger.of(context)
+                                      //     .showSnackBar(
+                                      //   SnackBar(
+                                      //     content: Text("proccessing"),
+                                      //   ),
+                                      // );
                                     }
                                   },
                                 ),

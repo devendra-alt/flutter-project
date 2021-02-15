@@ -1,3 +1,7 @@
+// import 'dart:js';
+
+import 'package:flutter/material.dart';
+
 extension EmailValidator on String {
   bool isValidEmail() {
     return RegExp(
@@ -33,7 +37,7 @@ extension SignUpPasswordValidator on String {
 }
 
 extension UserNameValidator on String {
-  String validateUserName() {
+  dynamic validateUserName() {
     if (this.isEmpty)
       return "username is required";
     else if (this.length < 5)

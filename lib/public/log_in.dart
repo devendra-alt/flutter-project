@@ -16,6 +16,7 @@ class _LoginState extends State<Login> {
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
 
+  
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _showPassword = true;
@@ -24,32 +25,26 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
-<<<<<<< HEAD
-        key: _scaffoldKey,
-        // resizeToAvoidBottomPadding: false,
-        backgroundColor: Colors.brown[50],
-        body: Container(
-            child: Form(
-=======
       key: _scaffoldKey,
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.brown[50],
+      backgroundColor: Colors.brown[100],
       body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("images/bg.png"),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: Form(
->>>>>>> f3a9f812e2150fc0eae7735a0c19a37baee3ec3d
           key: _formKey,
           child: Column(
             children: <Widget>[
               // 1.logo
               Expanded(
                 child: Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage("images/bg.png"),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
                   child: logo1(),
                 ),
               ),
@@ -59,6 +54,7 @@ class _LoginState extends State<Login> {
                 flex: 2,
                 child: SingleChildScrollView(
                   child: Container(
+                    // height: height-275,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
@@ -94,12 +90,12 @@ class _LoginState extends State<Login> {
                             bottom: 15,
                           ),
                           child: TextFormField(
-                            validator: (value) {
-                              if (value.isValidEmail())
-                                return null;
-                              else
-                                return "please check your email";
-                            },
+                            // validator: (value) {
+                            //   if (value.isValidEmail())
+                            //     return null;
+                            //   else
+                            //     return "please check your email";
+                            // },
                             controller: _email,
                             cursorColor: Colors.brown[400],
                             style: TextStyle(
@@ -142,12 +138,12 @@ class _LoginState extends State<Login> {
                           margin:
                               EdgeInsets.only(left: 20, right: 20, bottom: 15),
                           child: TextFormField(
-                            validator: (value) {
-                              if (value.isValidPassword())
-                                return null;
-                              else
-                                return "password is required";
-                            },
+                            // validator: (value) {
+                            //   if (value.isValidPassword())
+                            //     return null;
+                            //   else
+                            //     return "password is required";
+                            // },
                             controller: _password,
                             cursorColor: Colors.brown[400],
                             style: TextStyle(
@@ -206,6 +202,7 @@ class _LoginState extends State<Login> {
                         ),
                         //textfield fuction
 
+                        // Google and Facebook button
                         Container(
                           child: Text(
                             "- - - - - - - - - - or - - - - - - - - - - - -",
@@ -225,7 +222,9 @@ class _LoginState extends State<Login> {
                                 getGoogleSignUI(context);
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    content: Text("proccessing"),
+                                    content: Text("Proccessing ..."),
+                                    duration: Duration(milliseconds: 1500),
+                                    backgroundColor: Colors.brown,
                                   ),
                                 );
                               },
@@ -249,8 +248,12 @@ class _LoginState extends State<Login> {
                           children: <Widget>[
                             Expanded(
                               child: Container(
+
                                 padding: EdgeInsets.only(bottom: 25),
+                                // ignore: missing_required_param
                                 child: TwinkleButton(
+                                  // buttonWidth: width-100,
+
                                   onclickButtonFunction: () async {
                                     if (_formKey.currentState.validate()) {
                                       getSignInUI(
@@ -258,14 +261,14 @@ class _LoginState extends State<Login> {
                                         _email.text.trim(),
                                         _password.text.trim(),
                                       );
-                                      _email.clear();
-                                      _password.clear();
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: Text("proccessing"),
-                                        ),
-                                      );
+                                      // _email.clear();
+                                      // _password.clear();
+                                      // // ScaffoldMessenger.of(context)
+                                      // //     .showSnackBar(
+                                      // //   SnackBar(
+                                      // //     content: Text("proccessing"),
+                                      // //   ),
+                                      // );
                                     }
                                   },
                                   buttonWidth: 300,
