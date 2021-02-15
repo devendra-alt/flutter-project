@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
+// import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:sign_up_app/services/UIAuth.dart';
 
 class Settingp extends StatelessWidget {
@@ -23,7 +23,7 @@ class Settingp extends StatelessWidget {
             children: <Widget>[
               CircleAvatar(
                 backgroundImage: NetworkImage(_profile),
-                radius: 42,
+                radius: 50,
                 backgroundColor: Colors.transparent,
               ),
               SizedBox(
@@ -33,16 +33,23 @@ class Settingp extends StatelessWidget {
                 _userName,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  fontFamily: "Baloo2",
                 ),
               ),
               SizedBox(
                 height: 10,
               ),
-              Text(_user.email),
+              Text(_user.email,
+              style:TextStyle(
+                fontSize: 15,
+                  fontFamily: "Baloo2",
+              ),
+              ),
               SizedBox(
                 height: 10,
               ),
-              Text(_user.uid),
+              // Text(_user.uid),
               SizedBox(
                 height: 10,
               ),
@@ -56,6 +63,7 @@ class Settingp extends StatelessWidget {
                 },
                 child: Text(
                   "SignOut",
+                  
                 ),
               )
             ],
