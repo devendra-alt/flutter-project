@@ -38,5 +38,3 @@ app.*.symbols
 
 # Obfuscation related
 app.*.map.json
-
-/media/devendra/DATA/flutter-project/android/key.properties
