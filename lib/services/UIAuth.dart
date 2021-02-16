@@ -27,15 +27,17 @@ Future<dynamic> getSignInUI(
   } else {
     if (status == "Given String is empty or null") {
       final snackBar = SnackBar(
-        content: Text("Email or Password cannot be Empty"),
+        content: Text("email or password cannot be empty"),
         backgroundColor: Colors.brown,
       );
       return ScaffoldMessenger.maybeOf(context).showSnackBar(snackBar);
     } else {
       final snackBar = SnackBar(
-        content: Text("Invalid Email or Password"),
+        content: Text("invalid email or password"),
         backgroundColor: Colors.brown,
       );
+      print("sign in status (stack tree)");
+      print(status);
       return ScaffoldMessenger.maybeOf(context).showSnackBar(snackBar);
     }
   }
@@ -52,19 +54,7 @@ Future<dynamic> getSignUpUI(
         password: _password,
         uName: _username,
       );
-  if (_username == "" && _email == "" && _password == "") {
-    final snackBar = SnackBar(
-      content: Text("All Fields are Required"),
-      backgroundColor: Colors.brown,
-    );
-    return ScaffoldMessenger.maybeOf(context).showSnackBar(snackBar);
-  } else if (_username == "") {
-    final snackBar = SnackBar(
-      content: Text("Username Required"),
-      backgroundColor: Colors.brown,
-    );
-    return ScaffoldMessenger.maybeOf(context).showSnackBar(snackBar);
-  } else if (status == true) {
+  if (status == true) {
     return Navigator.pushReplacement(
       context,
       PageTransition(
@@ -75,26 +65,15 @@ Future<dynamic> getSignUpUI(
       ),
     );
   } else {
-    if (status == "Given String is empty or null") {
-      final snackBar = SnackBar(
-        content: Text("Email or Password cannot be Empty"),
-        backgroundColor: Colors.brown,
-      );
-      return ScaffoldMessenger.maybeOf(context).showSnackBar(snackBar);
-    } else if (status ==
-        "The email address is already in use by another account.") {
-      final snackBar = SnackBar(
-        content: Text(status),
-        backgroundColor: Colors.brown,
-      );
-      return ScaffoldMessenger.maybeOf(context).showSnackBar(snackBar);
-    } else {
-      final snackBar = SnackBar(
-        content: Text("Invalid Email or Password"),
-        backgroundColor: Colors.brown,
-      );
-      return ScaffoldMessenger.maybeOf(context).showSnackBar(snackBar);
-    }
+    final snackBar = SnackBar(
+      content: Text(
+        "error in creating account ! please try again later",
+      ),
+      backgroundColor: Colors.brown,
+    );
+    print("status of sign up (stack tree)");
+    print(status);
+    return ScaffoldMessenger.maybeOf(context).showSnackBar(snackBar);
   }
 }
 
@@ -128,8 +107,8 @@ Future<dynamic> getSignOutUI(BuildContext context) async {
       context,
       PageTransition(
         type: PageTransitionType.bottomToTop,
-        duration: Duration(milliseconds: 800),
-        reverseDuration: Duration(milliseconds: 800),
+        duration: Duration(milliseconds: 1200),
+        reverseDuration: Duration(milliseconds: 1200),
         child: Landing(),
       ),
     );

@@ -32,7 +32,10 @@ class _LandingState extends State<Landing> {
               delay: Duration(seconds: 2),
               slidingCurve: Curves.fastLinearToSlowEaseIn,
               child: Container(
-                margin: EdgeInsets.only(bottom: 62.0, top: 0),
+                margin: EdgeInsets.only(
+                  bottom: 62.0,
+                  top: 0,
+                ),
                 height: 300,
                 width: 350,
                 decoration: BoxDecoration(
@@ -55,7 +58,9 @@ class _LandingState extends State<Landing> {
                 children: <Widget>[
                   Expanded(
                     child: Container(
-                      padding: EdgeInsets.only(bottom: 25),
+                      padding: EdgeInsets.only(
+                        bottom: 25,
+                      ),
                       child: TwinkleButton(
                         buttonWidth: 300,
                         durationTime: 3,

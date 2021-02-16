@@ -21,6 +21,8 @@ class _CreateAccountState extends State<CreateAccount> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _showPassword = true;
   bool _isValidUserName = false;
+  bool _isValidPassword = false;
+  bool _isValidEmail = false;
   Icon icon = Icon(Icons.visibility);
   bool _showSpinner = false;
   @override
@@ -144,6 +146,21 @@ class _CreateAccountState extends State<CreateAccount> {
                               bottom: 20,
                             ),
                             child: TextFormField(
+                              validator: (value) {
+                                if (!value.isValidEmailid()) {
+                                  final snackBar = SnackBar(
+                                    content: Text("invalid emailid"),
+                                    backgroundColor: Colors.brown,
+                                  );
+                                  ScaffoldMessenger.maybeOf(context)
+                                      .showSnackBar(snackBar);
+                                  _isValidEmail = false;
+                                  return null;
+                                } else {
+                                  _isValidEmail = true;
+                                  return null;
+                                }
+                              },
                               controller: _email,
                               cursorColor: Colors.brown[400],
                               style: TextStyle(
@@ -193,19 +210,19 @@ class _CreateAccountState extends State<CreateAccount> {
                               validator: (value) {
                                 print(value);
                                 if (value.validateStructure()) {
-                                  return null;
-                                } else if (value == "") {
+                                  _isValidPassword = false;
                                   return null;
                                 } else {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        "password must contain capital letters ,small letters ,special charcters , numbers",
+                                        "password must contain capital letters ,small letters ,special charcters or numbers",
                                       ),
                                       backgroundColor: Colors.brown,
                                       duration: Duration(seconds: 3),
                                     ),
                                   );
+                                  _isValidPassword = false;
                                   return null;
                                 }
                               },
@@ -304,7 +321,15 @@ class _CreateAccountState extends State<CreateAccount> {
                                 // padding: 10,
                                 // imagePosition:ImagePosition.right,
                                 buttonType: ButtonType.facebook,
-                                onPressed: () {},
+                                onPressed: () {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text("comming soon ..."),
+                                      duration: Duration(milliseconds: 1500),
+                                      backgroundColor: Colors.brown,
+                                    ),
+                                  );
+                                },
                               ),
                             ],
                           ),
@@ -336,7 +361,9 @@ class _CreateAccountState extends State<CreateAccount> {
                                         _showSpinner = true;
                                       });
                                       if (_formKey.currentState.validate() &&
-                                          _isValidUserName) {
+                                          _isValidUserName &&
+                                          _isValidPassword &&
+                                          _isValidEmail) {
                                         await getSignUpUI(
                                           context,
                                           _uname.text.trim(),

@@ -19,7 +19,7 @@ class _SettingpState extends State<Settingp> {
         ? _user.photoURL
         : 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png';
     final _userName =
-        _user.displayName != null ? _user.displayName : "userName not found";
+        _user.displayName != null ? _user.displayName : "username not found";
     return Scaffold(
       // backgroundColor: Colors.lightBlue,
       body: ModalProgressHUD(
@@ -28,7 +28,6 @@ class _SettingpState extends State<Settingp> {
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-
               // crossAxisAlignment: CrossAxisAlignment.end,
               children: <Widget>[
                 CircleAvatar(
