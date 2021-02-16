@@ -95,6 +95,7 @@ Future<dynamic> getGoogleSignUI(
   } else {
     final snackBar = SnackBar(
       content: Text(status),
+      backgroundColor: Colors.brown,
     );
     return ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
@@ -114,7 +115,10 @@ Future<dynamic> getSignOutUI(BuildContext context) async {
     );
   } else {
     return ScaffoldMessenger.maybeOf(context).showSnackBar(
-      (SnackBar(content: Text(status))),
+      (SnackBar(
+        content: Text(status),
+        backgroundColor: Colors.brown,
+      )),
     );
   }
 }
