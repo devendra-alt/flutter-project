@@ -222,7 +222,7 @@ class _CreateAccountState extends State<CreateAccount> {
                                       duration: Duration(seconds: 3),
                                     ),
                                   );
-                                  _isValidPassword = false;
+                                  _isValidPassword = true;
                                   return null;
                                 }
                               },

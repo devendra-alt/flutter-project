@@ -18,8 +18,7 @@ class _SettingpState extends State<Settingp> {
     final _profile = _user.photoURL != null
         ? _user.photoURL
         : 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png';
-    final _userName =
-        _user.displayName != null ? _user.displayName : "username not found";
+    final _userName = _user.displayName != null ? _user.displayName : "none";
     return Scaffold(
       // backgroundColor: Colors.lightBlue,
       body: ModalProgressHUD(
