@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
-// import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:sign_up_app/services/UIAuth.dart';
 
 class Settingp extends StatefulWidget {
@@ -80,27 +79,3 @@ class _SettingpState extends State<Settingp> {
     );
   }
 }
-
-/*class Listview extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        Column(
-          children: [
-            Container(
-              color: Colors.brown[300],
-              height: 100.0,
-              child: Row(
-                children: [
-                  Text("CCD",
-                      style: TextStyle(fontSize: 40.2, color: Colors.black)),
-                ],
-              ),
-            ),
-          ],
-        )
-      ],
-    );
-  }
-}*/

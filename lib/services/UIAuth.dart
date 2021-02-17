@@ -19,26 +19,65 @@ Future<dynamic> getSignInUI(
       context,
       PageTransition(
         type: PageTransitionType.bottomToTop,
-        duration: Duration(milliseconds: 1000),
-        reverseDuration: Duration(milliseconds: 800),
+        duration: Duration(
+          milliseconds: 1000,
+        ),
+        reverseDuration: Duration(
+          milliseconds: 800,
+        ),
         child: Home(),
       ),
     );
   } else {
     if (status == "Given String is empty or null") {
       final snackBar = SnackBar(
-        content: Text("email or password cannot be empty"),
+        content: Text(
+          "email or password cannot be empty",
+        ),
+        duration: Duration(
+          milliseconds: 1500,
+        ),
         backgroundColor: Colors.brown,
       );
       return ScaffoldMessenger.maybeOf(context).showSnackBar(snackBar);
+    } else if (status == "The email address is badly formatted.") {
+      final snackBar = SnackBar(
+        content: Text(
+          "invalid email or password",
+        ),
+        duration: Duration(
+          milliseconds: 1500,
+        ),
+        backgroundColor: Colors.brown,
+      );
+      print(
+        "sign in status (stack tree)",
+      );
+      print(status);
+      return ScaffoldMessenger.maybeOf(
+        context,
+      ).showSnackBar(
+        snackBar,
+      );
     } else {
       final snackBar = SnackBar(
-        content: Text("invalid email or password"),
+        content: Text(
+          "error in sign in ! try again letter",
+        ),
+        duration: Duration(
+          milliseconds: 1500,
+        ),
         backgroundColor: Colors.brown,
       );
-      print("sign in status (stack tree)");
+      print(
+        "sign in status (stack tree)",
+      );
       print(status);
-      return ScaffoldMessenger.maybeOf(context).showSnackBar(snackBar);
+      return ScaffoldMessenger.maybeOf(
+        context,
+      ).showSnackBar(
+        snackBar,
+      );
     }
   }
 }
@@ -70,6 +109,7 @@ Future<dynamic> getSignUpUI(
         "error in creating account ! please try again later",
       ),
       backgroundColor: Colors.brown,
+      duration: Duration(milliseconds: 1500),
     );
     print("status of sign up (stack tree)");
     print(status);
@@ -96,6 +136,7 @@ Future<dynamic> getGoogleSignUI(
     final snackBar = SnackBar(
       content: Text(status),
       backgroundColor: Colors.brown,
+      duration: Duration(milliseconds: 1500),
     );
     return ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
@@ -118,6 +159,7 @@ Future<dynamic> getSignOutUI(BuildContext context) async {
       (SnackBar(
         content: Text(status),
         backgroundColor: Colors.brown,
+        duration: Duration(milliseconds: 1500),
       )),
     );
   }

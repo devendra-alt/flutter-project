@@ -90,6 +90,7 @@ class _CreateAccountState extends State<CreateAccount> {
                                   final snackBar = SnackBar(
                                     content: Text(status),
                                     backgroundColor: Colors.brown,
+                                    duration: Duration(milliseconds: 1500),
                                   );
                                   ScaffoldMessenger.maybeOf(context)
                                       .showSnackBar(snackBar);
@@ -151,6 +152,7 @@ class _CreateAccountState extends State<CreateAccount> {
                                   final snackBar = SnackBar(
                                     content: Text("invalid emailid"),
                                     backgroundColor: Colors.brown,
+                                    duration: Duration(milliseconds: 1500),
                                   );
                                   ScaffoldMessenger.maybeOf(context)
                                       .showSnackBar(snackBar);
@@ -210,7 +212,7 @@ class _CreateAccountState extends State<CreateAccount> {
                               validator: (value) {
                                 print(value);
                                 if (value.validateStructure()) {
-                                  _isValidPassword = false;
+                                  _isValidPassword = true;
                                   return null;
                                 } else {
                                   ScaffoldMessenger.of(context).showSnackBar(
@@ -219,10 +221,10 @@ class _CreateAccountState extends State<CreateAccount> {
                                         "password must contain capital letters ,small letters ,special charcters or numbers",
                                       ),
                                       backgroundColor: Colors.brown,
-                                      duration: Duration(seconds: 3),
+                                      duration: Duration(milliseconds: 1500),
                                     ),
                                   );
-                                  _isValidPassword = true;
+                                  _isValidPassword = false;
                                   return null;
                                 }
                               },
@@ -307,13 +309,14 @@ class _CreateAccountState extends State<CreateAccount> {
                                 child: SignInButton(
                                   buttonType: ButtonType.google,
                                   onPressed: () async {
-                                    setState(() {
-                                      _showSpinner = true;
-                                    });
-                                    await getGoogleSignUI(context);
-                                    setState(() {
-                                      _showSpinner = false;
-                                    });
+                                    getGoogleSignUI(context);
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text("Proccessing ..."),
+                                        duration: Duration(milliseconds: 1500),
+                                        backgroundColor: Colors.brown,
+                                      ),
+                                    );
                                   },
                                 ),
                               ),

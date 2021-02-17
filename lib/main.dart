@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import 'package:sign_up_app/private/home.dart';
 import 'package:sign_up_app/public/landing.dart';
 import 'package:sign_up_app/services/auth.dart';
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();

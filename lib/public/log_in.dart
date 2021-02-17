@@ -211,13 +211,14 @@ class _LoginState extends State<Login> {
                               SignInButton.mini(
                                 buttonType: ButtonType.google,
                                 onPressed: () async {
-                                  setState(() {
-                                    _showSpinner = true;
-                                  });
-                                  await getGoogleSignUI(context);
-                                  setState(() {
-                                    _showSpinner = false;
-                                  });
+                                  getGoogleSignUI(context);
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text("Proccessing ..."),
+                                      duration: Duration(milliseconds: 1500),
+                                      backgroundColor: Colors.brown,
+                                    ),
+                                  );
                                 },
                               ),
                               SignInButton.mini(
@@ -251,19 +252,21 @@ class _LoginState extends State<Login> {
                                     // buttonWidth: width-100,
 
                                     onclickButtonFunction: () async {
-                                      setState(() {
-                                        _showSpinner = true;
-                                      });
-                                      if (_formKey.currentState.validate()) {
-                                        await getSignInUI(
-                                          context,
-                                          _email.text.trim(),
-                                          _password.text.trim(),
-                                        );
-                                      }
-                                      setState(() {
-                                        _showSpinner = false;
-                                      });
+                                      setState(
+                                        () {
+                                          _showSpinner = true;
+                                        },
+                                      );
+                                      await getSignInUI(
+                                        context,
+                                        _email.text.trim(),
+                                        _password.text.trim(),
+                                      );
+                                      setState(
+                                        () {
+                                          _showSpinner = false;
+                                        },
+                                      );
                                     },
                                     buttonWidth: 300,
                                     buttonTitle: Text(
